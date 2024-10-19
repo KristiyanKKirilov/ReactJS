@@ -15,5 +15,6 @@ const headingReactSectionElement = (
 );
 
 
+
 //Render content
 rootReactElement.render(headingReactSectionElement);
