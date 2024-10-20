@@ -1,3 +1,3 @@
 export default function MainHeader(){
-    return <h2>React title</h2>
+    return <h1>React title</h1>
 }
