@@ -1,6 +1,6 @@
 import TeamMember from "./TeamMember";
-   
-export default function Team(){
+
+export default function Team() {
     return (
         <section className="team section-padding" data-scroll-index='3'>
             <div className="container">
@@ -13,9 +13,9 @@ export default function Team(){
                         </div>
                         <div className="section-content text-center">
                             <div className="row">
-                                <TeamMember/>
-                                <TeamMember/>
-                                 <TeamMember/>
+                                <TeamMember />
+                                <TeamMember />
+                                <TeamMember />
                             </div>
                         </div>
                     </div>
