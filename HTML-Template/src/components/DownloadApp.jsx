@@ -1,5 +1,6 @@
 export default function DownloadApp(){
-    return (<section className="download section-padding">
+    return (
+    <section className="download section-padding">
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
@@ -19,5 +20,6 @@ export default function DownloadApp(){
                 </div>
             </div>
         </div>
-    </section>);
+    </section>
+    );
 }
