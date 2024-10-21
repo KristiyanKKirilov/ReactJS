@@ -49,5 +49,12 @@ const siteContent = React.createElement(
         {title: 'Best movies'},
     )
 );
+
+ const siteContentJSX = (
+    <div>
+        {headingReactSectionElement}
+        <Main title="Best movies" />
+    </div>
+ )
 //Render content
-rootReactElement.render(siteContent);
+rootReactElement.render(siteContentJSX);

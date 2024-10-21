@@ -32,5 +32,12 @@ function Main(props) {
 }
 
 var siteContent = React.createElement('div', {}, headingReactSectionElement, React.createElement(Main, { title: 'Best movies' }));
+
+var siteContentJSX = React.createElement(
+    "div",
+    null,
+    headingReactSectionElement,
+    React.createElement(Main, { title: "Best movies" })
+);
 //Render content
-rootReactElement.render(siteContent);
+rootReactElement.render(siteContentJSX);
