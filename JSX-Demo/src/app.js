@@ -14,6 +14,40 @@ const headingReactSectionElement = (
     </header>
 );
 
+//Create component without JSX
+function Main(props) {
+    return React.createElement(
+        'main',
+        {},
+        React.createElement(
+            'h3',
+            {},
+            props.title
+        ),
+        React.createElement(
+            'ul',
+            {},
+            React.createElement(
+                'li',
+                {},
+                'The matrix',
+            ),
+            React.createElement(
+                'li',
+                {},
+                'Man of culture',
+            )
+        ));
+}
 
+const siteContent = React.createElement(
+    'div',
+    {},
+    headingReactSectionElement,
+    React.createElement(
+        Main,
+        {title: 'Best movies'},
+    )
+);
 //Render content
-rootReactElement.render(headingReactSectionElement);
+rootReactElement.render(siteContent);
