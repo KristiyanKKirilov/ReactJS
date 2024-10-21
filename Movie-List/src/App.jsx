@@ -10,11 +10,7 @@ function App() {
 		'Case for Christ'
 	];
 
-	return (
-		<>
-			<MovieList movies={movies} />
-		</>
-	)
+	return <MovieList movies={movies} title="My movies"/>;
 }
 
 export default App

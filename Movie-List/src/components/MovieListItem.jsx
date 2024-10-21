@@ -1,5 +1,5 @@
 export default function MovieListItem(props){
     return (
-        <li>{props.title}</li>
+        <li style={{color: 'red'}}>{props.children}</li>
     );
 }
