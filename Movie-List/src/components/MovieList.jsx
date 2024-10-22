@@ -5,10 +5,18 @@ export default function MovieList(props) {
         <>
             <h1>{props.title}</h1>
             <ul>
-                <MovieListItem>{props.movies[0]}</MovieListItem>
-                <MovieListItem>{props.movies[1]}</MovieListItem>
-                <MovieListItem>{props.movies[2]}</MovieListItem>
-                <MovieListItem>{props.movies[3]}</MovieListItem>
+                <MovieListItem url="http://www.imdb.com/title/tt0133093">
+                        {props.movies[0]}
+                </MovieListItem>
+                <MovieListItem>
+                    {props.movies[1]}
+                </MovieListItem>
+                <MovieListItem>
+                    {props.movies[2]}
+                </MovieListItem>
+                <MovieListItem>
+                    {props.movies[3]}
+                </MovieListItem>
             </ul>
         </>
     );
