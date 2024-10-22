@@ -7,7 +7,8 @@ export default function Counter() {
         setCount(count + 1);
     }
 
-    function resetButtonClickHandler(){
+    function resetButtonClickHandler(e){
+        console.log(e);
         setCount(0);
     }
 
