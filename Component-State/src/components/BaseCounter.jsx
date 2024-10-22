@@ -17,12 +17,10 @@ export default function Counter() {
         setCount(count - 1);
     }
 
-    const countText = count >= 0 ? `Positive ${count}`: `Negative ${count}`;
-
     return (
         <>
             <h2>Counter</h2>
-            <p>{countText}</p> 
+            <p>{count}</p> 
             <button onClick={decrementButtonClickHandler}>-</button>
             <button onClick={resetButtonClickHandler}>0</button>
             <button onClick={incrementButtonClickHandler}>+</button>
