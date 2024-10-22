@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Counter.css';  
 
 export default function Counter() {
     const [count, setCount] = useState(0);
@@ -7,8 +8,7 @@ export default function Counter() {
         setCount(count + 1);
     }
 
-    function resetButtonClickHandler(e){
-        console.log(e);
+    function resetButtonClickHandler(){ 
         setCount(0);
     }
 
@@ -17,12 +17,16 @@ export default function Counter() {
         setCount(count - 1);
     }
 
-    const countText = count >= 0 ? `Positive ${count}`: `Negative ${count}`;
+    const condition = count >= 0;
+    
+    const countText = condition ? `Positive ${count}`: `Negative ${count}`;
+    const color = condition ? 'green' :'red';
+    const className = condition ? 'positive-text' : 'negative-text';
 
     return (
         <>
             <h2>Counter</h2>
-            <p>{countText}</p> 
+            <p style={{color}} className={className}>{countText}</p> 
             <button onClick={decrementButtonClickHandler}>-</button>
             <button onClick={resetButtonClickHandler}>0</button>
             <button onClick={incrementButtonClickHandler}>+</button>
