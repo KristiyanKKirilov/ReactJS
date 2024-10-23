@@ -34,7 +34,7 @@ export default function Counter() {
 
             <button onClick={decrementButtonClickHandler}>-</button>
             <button onClick={resetButtonClickHandler}>0</button>
-            <button onClick={incrementButtonClickHandler}>+</button>
+            {count < 10 && <button onClick={incrementButtonClickHandler}>+</button>}
         </>
     );
 }
