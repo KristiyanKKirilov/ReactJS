@@ -30,7 +30,7 @@ export default function Counter() {
             
             <KillCounter count={count}/>
 
-            <p style={{color}} className={className}>{countText}</p> 
+            <p style={{color}} classN ame={className}>{countText}</p> 
 
             <button onClick={decrementButtonClickHandler}>-</button>
             <button onClick={resetButtonClickHandler}>0</button>
