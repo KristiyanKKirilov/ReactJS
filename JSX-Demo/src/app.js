@@ -15,29 +15,24 @@ const headingReactSectionElement = (
 );
 
 //Create component without JSX
-function Main(props) {
-    return React.createElement(
-        'main',
+function Main(props){
+    return React.createElement('main',
+    {},
+    React.createElement('h3', {}, props.title),
+    React.createElement(
+        'ul',
         {},
         React.createElement(
-            'h3',
+            'li',
             {},
-            props.title
+            'The Matrix'
         ),
         React.createElement(
-            'ul',
+            'li',
             {},
-            React.createElement(
-                'li',
-                {},
-                'The matrix',
-            ),
-            React.createElement(
-                'li',
-                {},
-                'Man of culture',
-            )
-        ));
+            'The moon'
+        )  
+    ));
 }
 
 const siteContent = React.createElement(
@@ -45,16 +40,17 @@ const siteContent = React.createElement(
     {},
     headingReactSectionElement,
     React.createElement(
-        Main,
+        Main, 
         {title: 'Best movies'},
-    )
+     )
+
 );
 
  const siteContentJSX = (
-    <div>
+   <div>
         {headingReactSectionElement}
-        <Main title="Best movies" />
-    </div>
+        <Main title="Best movies"/>
+   </div>
  )
 //Render content
 rootReactElement.render(siteContentJSX);

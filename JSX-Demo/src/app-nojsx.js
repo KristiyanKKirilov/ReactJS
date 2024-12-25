@@ -16,4 +16,4 @@ const headingReactSectionElement = React.createElement(
 );
 
 //Render content
-rootReactElement.render(headingReactSectionElement);
+rootReactElement.render(headingReactSectionElement);    
