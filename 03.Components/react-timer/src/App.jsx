@@ -1,4 +1,5 @@
 import './App.css'
+import FancyTimer from './components/FancyTimer'
 import Timer from './components/Timer'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <Timer/>
+      <FancyTimer/>
     </>
   )
 }
