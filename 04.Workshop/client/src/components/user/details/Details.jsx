@@ -37,7 +37,7 @@ export default function Details({
                                 <p>Phone Number: <strong>{user.phoneNumber}</strong></p>
                                 <p>
                                     Address:
-                                    <strong> {user.address.country}, {user.address.city}, {user.address.street}, {user.address.streetNumber} </strong>
+                                    <strong> {Object.values(user.address).join(', ')} </strong>
                                 </p>
 
                                 <p>Created on: <strong>{formatDate(user.createdAt)}</strong></p>
