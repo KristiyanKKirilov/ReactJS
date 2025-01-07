@@ -4,6 +4,7 @@ import Pagination from "../pagination/Pagination";
 import  './UserSection.css';
 import { baseUrl } from "../../constants";
 import { useEffect, useState } from "react";
+import CreateEdit from "../user/create-edit/CreateEdit";
 
 const url = baseUrl;
 
@@ -30,12 +31,17 @@ export default function UserSection() {
         })();
     }, []);
 
+    function addUserClickHandler(){
+
+    }
+
     return (
         <>
             <section className="card users-container">
                 <SearchBar />
                 <UserList users={users} />
-                <button className="btn-add btn" >Add new user</button>
+                <CreateEdit/>
+                <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
                 <Pagination />
             </section>
         </>

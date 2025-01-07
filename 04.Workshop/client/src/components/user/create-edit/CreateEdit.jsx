@@ -1,4 +1,4 @@
-import styles from './CreateEdit.module.css';
+import './CreateEdit.css';
 
 export default function CreateEdit() {
     return (
@@ -6,8 +6,8 @@ export default function CreateEdit() {
              <div className="overlay">
                     <div className="backdrop"></div>
                     <div className="modal">
-                        <div className={styles["user-container"]}>
-                            <header className={styles["headers"]}>
+                        <div className="user-container">
+                            <header className="headers">
                                 <h2>Edit User/Add User</h2>
                                 <button className="btn close">
                                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
@@ -19,76 +19,76 @@ export default function CreateEdit() {
                                 </button>
                             </header>
                             <form>
-                                <div className={styles["form-row"]}>
-                                    <div className={styles["form-group"]}>
+                                <div className="form-row">
+                                    <div className="form-group">
                                         <label htmlFor="firstName">First name</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-user"></i></span>
                                             <input id="firstName" name="firstName" type="text" />
                                         </div>
                                     </div>
-                                    <div className={styles["form-group"]}>
+                                    <div className="form-group">
                                         <label htmlFor="lastName">Last name</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-user"></i></span>
                                             <input id="lastName" name="lastName" type="text" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className={styles["form-row"]}>
-                                    <div className={styles["form-group"]}>
+                                <div className="form-row">
+                                    <div className="form-group">
                                         <label htmlFor="email">Email</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-envelope"></i></span>
                                             <input id="email" name="email" type="text" />
                                         </div>
                                     </div>
-                                    <div className={styles["form-group"]}>
+                                    <div className="form-group">
                                         <label htmlFor="phoneNumber">Phone number</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-phone"></i></span>
                                             <input id="phoneNumber" name="phoneNumber" type="text" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className={styles["form-group long-line"]}>
+                                <div className="form-group long-line">
                                     <label htmlFor="imageUrl">Image Url</label>
-                                    <div className={styles["input-wrapper"]}>
+                                    <div className="input-wrapper">
                                         <span><i className="fa-solid fa-image"></i></span>
                                         <input id="imageUrl" name="imageUrl" type="text" />
                                     </div>
                                 </div>
 
-                                <div className={styles["form-row"]}>
-                                    <div className={styles["form-group"]}>
+                                <div className="form-row">
+                                    <div className="form-group">
                                         <label htmlFor="country">Country</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-map"></i></span>
                                             <input id="country" name="country" type="text" />
                                         </div>
                                     </div>
-                                    <div className={styles["form-group"]}>
+                                    <div className="form-group">
                                         <label htmlFor="city">City</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-city"></i></span>
                                             <input id="city" name="city" type="text" />
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className={styles["form-row"]}>
-                                    <div className={styles["form-group"]}>
+                                <div className="form-row">
+                                    <div className="form-group">
                                         <label htmlFor="street">Street</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-map"></i></span>
                                             <input id="street" name="street" type="text" />
                                         </div>
                                     </div>
-                                    <div className={styles["form-group"]}>
+                                    <div className="form-group">
                                         <label htmlFor="streetNumber">Street number</label>
-                                        <div className={styles["input-wrapper"]}>
+                                        <div className="input-wrapper">
                                             <span><i className="fa-solid fa-house-chimney"></i></span>
                                             <input id="streetNumber" name="streetNumber" type="text" />
                                         </div>
