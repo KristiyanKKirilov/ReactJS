@@ -44,7 +44,11 @@ export default function UserSection() {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const userData = Object.values(formData);
+        const userData = {
+            ...Object.values(formData),
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        };
 
         const response = await fetch(`${url}/users`, {
             method: 'POST',
@@ -54,7 +58,6 @@ export default function UserSection() {
             body: JSON.stringify(userData),
         });
         const createdUser = await response.json(); 
-
         setUsers(oldUsers => [...oldUsers, createdUser]);
 
         addUserCloseHandler(false);      
