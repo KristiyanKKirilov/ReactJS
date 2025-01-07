@@ -3,6 +3,7 @@ import styles from './UserList.module.css';
 
 export default function UserList({
     users,
+    onUserDetailsClick
 }) {
     return (
         <>
@@ -133,7 +134,12 @@ export default function UserList({
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => <UserItem key={user._id} currentUser={user}/>)}
+                        {users.map((user) => 
+                        <UserItem 
+                            key={user._id} 
+                            currentUser={user} 
+                            onUserDetailsClick={onUserDetailsClick}
+                        />)}
                     </tbody>
                 </table>
             </div>

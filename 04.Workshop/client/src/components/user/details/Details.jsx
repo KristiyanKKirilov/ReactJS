@@ -1,6 +1,9 @@
 import styles from './Details.module.css';
 
-export default function Details() {
+export default function Details({
+    onClose,
+    user
+}) {
     return (
         <>
              <div className="overlay">
@@ -9,7 +12,7 @@ export default function Details() {
                     <div className={styles["detail-container"]}>
                         <header className={styles["headers"]}>
                             <h2>User Detail</h2>
-                            <button className="btn close">
+                            <button className="btn close" onClick={onClose}>
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                                     className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                     <path fill="currentColor"
@@ -24,16 +27,16 @@ export default function Details() {
                                     className={styles["image"]} />
                             </div>
                             <div className={styles["user-details"]}>
-                                <p>User Id: <strong>62bb0c0eda039e2fdccba57b</strong></p>
+                                <p>User Id: <strong>{user._id}</strong></p>
                                 <p>
                                     Full Name:
-                                    <strong> Peter Johnson </strong>
+                                    <strong> {user.firstName} {user.lastName} </strong>
                                 </p>
-                                <p>Email: <strong>peter@abv.bg</strong></p>
-                                <p>Phone Number: <strong>0812345678</strong></p>
+                                <p>Email: <strong>{user.email}</strong></p>
+                                <p>Phone Number: <strong>{user.phoneNumber}</strong></p>
                                 <p>
                                     Address:
-                                    <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+                                    <strong> {user.address.country}, {user.address.city}, {user.address.street}, {user.address.streetNumber} </strong>
                                 </p>
 
                                 <p>Created on: <strong>Wednesday, June 28, 2022</strong></p>

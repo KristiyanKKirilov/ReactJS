@@ -1,6 +1,7 @@
 import UserList from "./user-list/UserList";
 import SearchBar from "../search-bar/SearchBar";
 import Pagination from "../pagination/Pagination";
+import Details from "../user/details/Details";
 import './UserSection.css';
 import { baseUrl } from "../../constants";
 import { useEffect, useState } from "react";
@@ -10,7 +11,8 @@ const url = baseUrl;
 
 export default function UserSection() {
     const [users, setUsers] = useState([]);
-    const [displayed, setDisplayed] = useState(false);
+    const [createMenuState, setCreateMenuState] = useState(false);
+    const [detailsById, setDetailsById] = useState(null);
 
     useEffect(() => {
         // fetch(`${url}/users`)
@@ -33,11 +35,20 @@ export default function UserSection() {
     }, []);
 
     function addUserClickHandler() {
-        setDisplayed(true);
+        setCreateMenuState(true);
     }
 
     function addUserCloseHandler() {
-        setDisplayed(false);
+        setCreateMenuState(false);
+    }
+
+    function userDetailsCloseHandler(){
+        setDetailsById(false);
+    }
+
+    function userDetailsClickHandler(userId){
+        console.log(userId);
+        setDetailsById(userId);
     }
 
     async function addUserSaveHandler(e) {
@@ -68,11 +79,22 @@ export default function UserSection() {
         <>
             <section className="card users-container">
                 <SearchBar />
-                <UserList users={users} />
-                {displayed && <CreateEdit
+                
+                <UserList 
+                users={users} 
+                onUserDetailsClick={userDetailsClickHandler}
+                />
+
+                {createMenuState && <CreateEdit
                     onClose={addUserCloseHandler}
                     onSave={addUserSaveHandler} />}
+
+                {detailsById && <Details
+                    user={users.find(user => user._id === detailsById)}
+                    onClose={userDetailsCloseHandler}/>}
+
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
+                
                 <Pagination />
             </section>
         </>
