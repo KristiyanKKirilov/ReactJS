@@ -1,7 +1,9 @@
 import UserItem from './user-item/UserItem';
 import styles from './UserList.module.css';
 
-export default function UserList(props) {
+export default function UserList({
+    users,
+}) {
     return (
         <>
             <div className={styles["table-wrapper"]}>
@@ -131,7 +133,7 @@ export default function UserList(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.users.map((user) => <UserItem key={user.email} currentUser={user}/>)}
+                        {users.map((user) => <UserItem key={user._id} currentUser={user}/>)}
                     </tbody>
                 </table>
             </div>

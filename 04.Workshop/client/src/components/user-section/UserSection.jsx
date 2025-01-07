@@ -17,22 +17,27 @@ export default function UserSection() {
         //     setUsers(Object.values(result));
         //     // console.log(Object.values(result));
         // });
-        (async function getUsers(){
-            const response = await fetch(`${url}/users`);
-            const result = await response.json();
-            setUsers(Object.values(result));
+        (async function getUsers() {
+            try {
+                const response = await fetch(`${url}/users`);
+                const result = await response.json();
+                setUsers(Object.values(result));
 
+
+            } catch (error) {
+                alert(error.message);
+            }
         })();
     }, []);
 
     return (
         <>
-            <section className={styles["card users-container"]}>            
-                    <SearchBar/>    
-                    <UserList users={users}/>
-                    <button className="btn-add btn">Add new user</button>
-                    <Pagination/>                   
-                </section>
+            <section className={styles["card users-container"]}>
+                <SearchBar />
+                <UserList users={users} />
+                <button className="btn-add btn">Add new user</button>
+                <Pagination />
+            </section>
         </>
     );
 }

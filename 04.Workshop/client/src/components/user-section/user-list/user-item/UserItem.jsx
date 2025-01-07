@@ -1,18 +1,20 @@
 import styles from './UserItem.module.css';
 
-export default function UserItem(props) {
+export default function UserItem({
+    currentUser
+}) {
     return (
         <>
             <tr>
                 <td>
-                    <img src={props.currentUser.imageUrl}
+                    <img src={currentUser.imageUrl}
                         alt="Peter's profile" className={styles["image"]} />
                 </td>
-                <td>{props.currentUser.firstName}</td>
-                <td>{props.currentUser.lastName}</td>
-                <td>{props.currentUser.email}</td>
-                <td>{props.currentUser.phoneNumber}</td>
-                <td>{props.currentUser.createdAt}</td>
+                <td>{currentUser.firstName}</td>
+                <td>{currentUser.lastName}</td>
+                <td>{currentUser.email}</td>
+                <td>{currentUser.phoneNumber}</td>
+                <td>{currentUser.createdAt}</td>
 
                 <td className={styles["actions"]}>
                     <button className="btn edit-btn" title="Edit">
