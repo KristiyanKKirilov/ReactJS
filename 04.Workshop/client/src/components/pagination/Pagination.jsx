@@ -1,21 +1,21 @@
-import styles from './Pagination.module.css';
+import './Pagination.css';
 
 export default function Pagination() {
     return (
         <>
-            <div className={styles["pagination position"]}>
-                <div className={styles["limits"]}>
+            <div className="pagination position">
+                <div className="limits">
                     <span>Items per page:</span>
-                    <select name="limit" className={styles["limit"]} defaultValue="5">
+                    <select name="limit" className="limit" defaultValue="5">
                         <option value="5">5</option>
                         <option value="5">10</option>
                         <option value="5">15</option>
                         <option value="5">20</option>
                     </select>
                 </div>
-                <p className={styles["pages"]}>1 - 1 of 1</p>
-                <div className={styles["actions"]}>
-                    <button className={styles["btn"]} title="First Page">
+                <p className="pages">1 - 1 of 1</p>
+                <div className="actions">
+                    <button className="btn" title="First Page">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angles-left"
                             className="svg-inline--fa fa-angles-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                             <path fill="currentColor"
@@ -24,7 +24,7 @@ export default function Pagination() {
                         </svg>
                     </button>
 
-                    <button className={styles["btn"]} title="Previous Page">
+                    <button className="btn" title="Previous Page">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-left"
                             className="svg-inline--fa fa-angle-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                             <path fill="currentColor"
@@ -32,7 +32,7 @@ export default function Pagination() {
                             </path>
                         </svg>
                     </button>
-                    <button className={styles["btn"]} title="Next Page">
+                    <button className="btn" title="Next Page">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-right"
                             className="svg-inline--fa fa-angle-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
                             <path fill="currentColor"
@@ -41,7 +41,7 @@ export default function Pagination() {
                         </svg>
                     </button>
 
-                    <button className={styles["btn"]} title="Last Page">
+                    <button className="btn" title="Last Page">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angles-right"
                             className="svg-inline--fa fa-angles-right" role="img" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512">

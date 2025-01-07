@@ -1,7 +1,7 @@
 import UserList from "./user-list/UserList";
-import styles from './UserSection.module.css';
 import SearchBar from "../search-bar/SearchBar";
 import Pagination from "../pagination/Pagination";
+import  './UserSection.css';
 import { baseUrl } from "../../constants";
 import { useEffect, useState } from "react";
 
@@ -32,10 +32,10 @@ export default function UserSection() {
 
     return (
         <>
-            <section className={styles["card users-container"]}>
+            <section className="card users-container">
                 <SearchBar />
                 <UserList users={users} />
-                <button className="btn-add btn">Add new user</button>
+                <button className="btn-add btn" >Add new user</button>
                 <Pagination />
             </section>
         </>

@@ -1,9 +1,9 @@
-import styles from './SearchBar.module.css';
+import './SearchBar.css';
 
 export default function SearchBar() {
     return (
         <>
-            <form className={styles["search-form"]}>
+            <form className="search-form">
                 <h2>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user"
                         className="svg-inline--fa fa-user SearchBar_icon__cXpTg" role="img" xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ export default function SearchBar() {
                     </svg>
                     <span>Users</span>
                 </h2>
-                <div className={styles["search-input-container"]}>
+                <div className="search-input-container">
                     <input type="text" placeholder="Please, select the search criteria" name="search" />
                     {/* <!-- Show the clear button only if input field length !== 0 --> */}
                     <button className="btn close-btn">
@@ -26,9 +26,9 @@ export default function SearchBar() {
                     </button>
                 </div>
 
-                <div className={styles["filter"]}>
+                <div className="filter">
                     <span>Search Criteria:</span>
-                    <select name="criteria" className={styles["criteria"]}>
+                    <select name="criteria" className="criteria">
                         <option value="">Not selected</option>
                         <option value="">First Name</option>
                         <option value="">Last Name</option>
