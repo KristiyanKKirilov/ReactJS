@@ -1,3 +1,4 @@
+import { formatDate } from '../../../utils/dateUtils';
 import styles from './Details.module.css';
 
 export default function Details({
@@ -39,8 +40,8 @@ export default function Details({
                                     <strong> {user.address.country}, {user.address.city}, {user.address.street}, {user.address.streetNumber} </strong>
                                 </p>
 
-                                <p>Created on: <strong>Wednesday, June 28, 2022</strong></p>
-                                <p>Modified on: <strong>Thursday, June 29, 2022</strong></p>
+                                <p>Created on: <strong>{formatDate(user.createdAt)}</strong></p>
+                                <p>Modified on: <strong>{formatDate(user.updatedAt)}</strong></p>
                             </div>
                         </div>
                     </div>
