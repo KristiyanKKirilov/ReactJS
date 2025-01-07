@@ -8,7 +8,7 @@ export default function Details({
     return (
         <>
              <div className="overlay">
-                <div className="backdrop"></div>
+                <div className="backdrop" onClick={onClose}></div>
                 <div className="modal">
                     <div className={styles["detail-container"]}>
                         <header className={styles["headers"]}>
@@ -24,7 +24,7 @@ export default function Details({
                         </header>
                         <div className={styles["content"]}>
                             <div className={styles["image-container"]}>
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+                                <img src={user.imageUrl} alt=""
                                     className={styles["image"]} />
                             </div>
                             <div className={styles["user-details"]}>

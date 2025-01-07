@@ -3,7 +3,8 @@ import styles from './UserList.module.css';
 
 export default function UserList({
     users,
-    onUserDetailsClick
+    onUserDetailsClick,
+    onDelete
 }) {
     return (
         <>
@@ -139,6 +140,7 @@ export default function UserList({
                             key={user._id} 
                             currentUser={user} 
                             onUserDetailsClick={onUserDetailsClick}
+                            onDelete={onDelete}
                         />)}
                     </tbody>
                 </table>

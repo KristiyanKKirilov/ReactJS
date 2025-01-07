@@ -6,6 +6,7 @@ import './UserSection.css';
 import { baseUrl } from "../../constants";
 import { useEffect, useState } from "react";
 import CreateEdit from "../user/create-edit/CreateEdit";
+import Delete from "../user/delete/Delete";
 
 const url = baseUrl;
 
@@ -13,6 +14,7 @@ export default function UserSection() {
     const [users, setUsers] = useState([]);
     const [createMenuState, setCreateMenuState] = useState(false);
     const [detailsById, setDetailsById] = useState(null);
+    const [deleteUserById, setDeleteUserById] = useState(null);
 
     useEffect(() => {
         // fetch(`${url}/users`)
@@ -43,24 +45,34 @@ export default function UserSection() {
     }
 
     function userDetailsCloseHandler(){
-        setDetailsById(false);
+        setDetailsById(null);
     }
 
     function userDetailsClickHandler(userId){
-        console.log(userId);
         setDetailsById(userId);
+    }
+
+    function userDeleteClickHandler(userId){
+        setDeleteUserById(userId);
+    }
+
+    async function userDeleteHandler(userId){
+        const response = await fetch(`${url}/users/${userId}`,{
+            method: 'DELETE'
+        });
+
+        setUsers(oldUsers => oldUsers.filter(user => user._id !== userId)); 
+
+        setDeleteUserById(null);
     }
 
     async function addUserSaveHandler(e) {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const userData = {
-            ...Object.values(formData),
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-        };
+        const userData = Object.values(formData);
 
+        console.log(userData);
         const response = await fetch(`${url}/users`, {
             method: 'POST',
             headers: {
@@ -83,6 +95,7 @@ export default function UserSection() {
                 <UserList 
                 users={users} 
                 onUserDetailsClick={userDetailsClickHandler}
+                onDelete={userDeleteClickHandler}
                 />
 
                 {createMenuState && <CreateEdit
@@ -92,6 +105,11 @@ export default function UserSection() {
                 {detailsById && <Details
                     user={users.find(user => user._id === detailsById)}
                     onClose={userDetailsCloseHandler}/>}
+
+                {deleteUserById && 
+                <Delete 
+                onClose={() => setDeleteUserById(null)} 
+                onDelete={() => userDeleteHandler(deleteUserById)}/>}
 
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
                 
