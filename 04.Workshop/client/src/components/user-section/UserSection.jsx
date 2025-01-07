@@ -40,11 +40,24 @@ export default function UserSection() {
         setDisplayed(false);
     }
 
-    function addUserSaveHandler(e) {
+    async function addUserSaveHandler(e) {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        console.log({formData});
+        const userData = Object.values(formData);
+
+        const response = await fetch(`${url}/users`, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData),
+        });
+        const createdUser = await response.json(); 
+
+        setUsers(oldUsers => [...oldUsers, createdUser]);
+
+        addUserCloseHandler(false);      
 
     }
 
@@ -53,9 +66,9 @@ export default function UserSection() {
             <section className="card users-container">
                 <SearchBar />
                 <UserList users={users} />
-                {displayed && <CreateEdit 
-                onClose={addUserCloseHandler}
-                onSave={addUserSaveHandler} />}
+                {displayed && <CreateEdit
+                    onClose={addUserCloseHandler}
+                    onSave={addUserSaveHandler} />}
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
                 <Pagination />
             </section>
