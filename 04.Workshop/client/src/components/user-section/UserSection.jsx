@@ -11,12 +11,18 @@ export default function UserSection() {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch(`${url}/users`)
-        .then(response => response.json())
-        .then(result => {
+        // fetch(`${url}/users`)
+        // .then(response => response.json())
+        // .then(result => {
+        //     setUsers(Object.values(result));
+        //     // console.log(Object.values(result));
+        // });
+        (async function getUsers(){
+            const response = await fetch(`${url}/users`);
+            const result = await response.json();
             setUsers(Object.values(result));
-            // console.log(Object.values(result));
-        });
+
+        })();
     }, []);
 
     return (

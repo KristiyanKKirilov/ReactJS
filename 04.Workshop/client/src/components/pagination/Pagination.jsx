@@ -6,7 +6,7 @@ export default function Pagination() {
             <div className={styles["pagination position"]}>
                 <div className={styles["limits"]}>
                     <span>Items per page:</span>
-                    <select name="limit" className={styles["limit"]} value="5">
+                    <select name="limit" className={styles["limit"]} defaultValue="5">
                         <option value="5">5</option>
                         <option value="5">10</option>
                         <option value="5">15</option>
