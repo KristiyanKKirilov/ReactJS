@@ -10,6 +10,7 @@ const url = baseUrl;
 
 export default function UserSection() {
     const [users, setUsers] = useState([]);
+    const [displayed, setDisplayed] = useState(false);
 
     useEffect(() => {
         // fetch(`${url}/users`)
@@ -32,7 +33,11 @@ export default function UserSection() {
     }, []);
 
     function addUserClickHandler(){
+        setDisplayed(true);
+    }
 
+    function handleCallback(){
+        setDisplayed(false);
     }
 
     return (
@@ -40,7 +45,7 @@ export default function UserSection() {
             <section className="card users-container">
                 <SearchBar />
                 <UserList users={users} />
-                <CreateEdit/>
+                {displayed && <CreateEdit parentCallback={handleCallback}/>}
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
                 <Pagination />
             </section>
