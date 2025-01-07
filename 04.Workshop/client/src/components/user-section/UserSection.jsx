@@ -1,7 +1,7 @@
 import UserList from "./user-list/UserList";
 import SearchBar from "../search-bar/SearchBar";
 import Pagination from "../pagination/Pagination";
-import  './UserSection.css';
+import './UserSection.css';
 import { baseUrl } from "../../constants";
 import { useEffect, useState } from "react";
 import CreateEdit from "../user/create-edit/CreateEdit";
@@ -32,12 +32,20 @@ export default function UserSection() {
         })();
     }, []);
 
-    function addUserClickHandler(){
+    function addUserClickHandler() {
         setDisplayed(true);
     }
 
-    function handleCallback(){
+    function addUserCloseHandler() {
         setDisplayed(false);
+    }
+
+    function addUserSaveHandler(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        console.log({formData});
+
     }
 
     return (
@@ -45,7 +53,9 @@ export default function UserSection() {
             <section className="card users-container">
                 <SearchBar />
                 <UserList users={users} />
-                {displayed && <CreateEdit parentCallback={handleCallback}/>}
+                {displayed && <CreateEdit 
+                onClose={addUserCloseHandler}
+                onSave={addUserSaveHandler} />}
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
                 <Pagination />
             </section>
