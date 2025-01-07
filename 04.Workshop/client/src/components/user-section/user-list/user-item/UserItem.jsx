@@ -1,3 +1,4 @@
+import { formatDate } from '../../../../utils/dateUtils';
 import styles from './UserItem.module.css';
 
 export default function UserItem({
@@ -8,13 +9,13 @@ export default function UserItem({
             <tr>
                 <td>
                     <img src={currentUser.imageUrl}
-                        alt="Peter's profile" className={styles["image"]} />
+                        alt={`${currentUser.firstName}'s profile`} className={styles["image"]} />
                 </td>
                 <td>{currentUser.firstName}</td>
                 <td>{currentUser.lastName}</td>
                 <td>{currentUser.email}</td>
                 <td>{currentUser.phoneNumber}</td>
-                <td>{currentUser.createdAt}</td>
+                <td>{formatDate(currentUser.createdAt)}</td>
 
                 <td className={styles["actions"]}>
                     <button className="btn edit-btn" title="Edit">
