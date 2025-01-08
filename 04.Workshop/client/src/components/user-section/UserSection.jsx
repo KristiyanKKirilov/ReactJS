@@ -14,8 +14,10 @@ export default function UserSection() {
     const [users, setUsers] = useState([]);
     const [createMenuState, setCreateMenuState] = useState(false);
     const [detailsById, setDetailsById] = useState(null);
-    const [deleteUserById, setDeleteUserById] = useState(null); 
+    const [deleteUserById, setDeleteUserById] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [criteria, setCriteria] = useState('Not selected');
+    const [filter, setFilter] = useState();
 
     useEffect(() => {
         // fetch(`${url}/users`)
@@ -28,16 +30,37 @@ export default function UserSection() {
             try {
                 const response = await fetch(`${url}/users`);
                 const result = await response.json();
-                setUsers(Object.values(result));
+                const users = Object.values(result);
+
+                switch (criteria) {
+                    case 'notSelected':
+                        setUsers(users);
+                        break;
+                    case 'firstName':
+                        setUsers(users.filter(user => user.firstName.toLowerCase().includes(filter)));
+                        break;
+                    case 'lastName': 
+                        setUsers(users.filter(user => user.lastName.toLowerCase().includes(filter)));
+                        break;
+                    case 'email': 
+                        setUsers(users.filter(user => user.email.toLowerCase().includes(filter)));
+                        break;
+                    case 'phoneNumber': 
+                        setUsers(users.filter(user => user.phoneNumber.toLowerCase().includes(filter)));
+                        break;
+                    default:
+                        setUsers(users);
+                        break;
+                }
 
 
             } catch (error) {
                 alert(error.message);
-            } finally{
+            } finally {
                 setIsLoading(false);
             }
         })();
-    }, []);
+    }, [criteria, filter]);
 
     function addUserClickHandler() {
         setCreateMenuState(true);
@@ -47,24 +70,24 @@ export default function UserSection() {
         setCreateMenuState(false);
     }
 
-    function userDetailsCloseHandler(){
+    function userDetailsCloseHandler() {
         setDetailsById(null);
     }
 
-    function userDetailsClickHandler(userId){
+    function userDetailsClickHandler(userId) {
         setDetailsById(userId);
     }
 
-    function userDeleteClickHandler(userId){
+    function userDeleteClickHandler(userId) {
         setDeleteUserById(userId);
     }
 
-    async function userDeleteHandler(userId){
-        const response = await fetch(`${url}/users/${userId}`,{
+    async function userDeleteHandler(userId) {
+        const response = await fetch(`${url}/users/${userId}`, {
             method: 'DELETE'
         });
 
-        setUsers(oldUsers => oldUsers.filter(user => user._id !== userId)); 
+        setUsers(oldUsers => oldUsers.filter(user => user._id !== userId));
 
         setDeleteUserById(null);
     }
@@ -83,27 +106,36 @@ export default function UserSection() {
         const response = await fetch(`${url}/users`, {
             method: 'POST',
             headers: {
-            'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(userData),
         });
-        const createdUser = await response.json(); 
+        const createdUser = await response.json();
         setUsers(oldUsers => [...oldUsers, createdUser]);
 
-        addUserCloseHandler(false);      
+        addUserCloseHandler(false);
 
+    }
+
+    function searchHandler(e) {
+        e.preventDefault();
+
+        const enteredInput = e.target.elements.search.value;
+        const selectedCriteria = e.target.elements.criteria.value;
+        setFilter(enteredInput.toLowerCase());
+        setCriteria(selectedCriteria);
     }
 
     return (
         <>
             <section className="card users-container">
-                <SearchBar />
-                
-                <UserList 
-                users={users} 
-                onUserDetailsClick={userDetailsClickHandler}
-                onDelete={userDeleteClickHandler}
-                isLoading={isLoading}
+                <SearchBar onSearch={searchHandler} />
+
+                <UserList
+                    users={users}
+                    onUserDetailsClick={userDetailsClickHandler}
+                    onDelete={userDeleteClickHandler}
+                    isLoading={isLoading}
                 />
 
                 {createMenuState && <CreateEdit
@@ -112,15 +144,15 @@ export default function UserSection() {
 
                 {detailsById && <Details
                     user={users.find(user => user._id === detailsById)}
-                    onClose={userDetailsCloseHandler}/>}
+                    onClose={userDetailsCloseHandler} />}
 
-                {deleteUserById && 
-                <Delete 
-                onClose={() => setDeleteUserById(null)} 
-                onDelete={() => userDeleteHandler(deleteUserById)}/>}
+                {deleteUserById &&
+                    <Delete
+                        onClose={() => setDeleteUserById(null)}
+                        onDelete={() => userDeleteHandler(deleteUserById)} />}
 
                 <button className="btn-add btn" onClick={addUserClickHandler}>Add new user</button>
-                
+
                 <Pagination />
             </section>
         </>
