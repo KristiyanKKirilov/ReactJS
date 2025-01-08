@@ -1,14 +1,17 @@
+import Loader from '../../shared/Loader';
 import UserItem from './user-item/UserItem';
 import styles from './UserList.module.css';
 
 export default function UserList({
     users,
     onUserDetailsClick,
-    onDelete
+    onDelete,
+    isLoading
 }) {
     return (
         <>
             <div className={styles["table-wrapper"]}>
+                {isLoading && <Loader/>}
                 {/* <!-- Overlap components  -->
 
                 <!-- <div className="loading-shade"> -->

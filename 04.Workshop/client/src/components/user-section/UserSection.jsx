@@ -14,7 +14,8 @@ export default function UserSection() {
     const [users, setUsers] = useState([]);
     const [createMenuState, setCreateMenuState] = useState(false);
     const [detailsById, setDetailsById] = useState(null);
-    const [deleteUserById, setDeleteUserById] = useState(null);
+    const [deleteUserById, setDeleteUserById] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         // fetch(`${url}/users`)
@@ -32,6 +33,8 @@ export default function UserSection() {
 
             } catch (error) {
                 alert(error.message);
+            } finally{
+                setIsLoading(false);
             }
         })();
     }, []);
@@ -70,7 +73,11 @@ export default function UserSection() {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const userData = Object.values(formData);
+        const userData = {
+            ...Object.fromEntries(formData),
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        }
 
         console.log(userData);
         const response = await fetch(`${url}/users`, {
@@ -96,6 +103,7 @@ export default function UserSection() {
                 users={users} 
                 onUserDetailsClick={userDetailsClickHandler}
                 onDelete={userDeleteClickHandler}
+                isLoading={isLoading}
                 />
 
                 {createMenuState && <CreateEdit
