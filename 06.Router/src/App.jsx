@@ -1,0 +1,22 @@
+import Home from './components/Home';
+import Pricing from './components/Pricing';
+import Header from './components/Header';
+import About from './components/About';
+import {Routes, Route} from 'react-router-dom';
+
+function App() {
+  return (
+    <>
+    <div className="bg-white">
+        <Header/>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/pricing" element={<Pricing/>}/>
+            <Route path="/about" element={<About/>}/>
+        </Routes>
+    </div>
+    </>
+  );
+}
+
+export default App;
