@@ -1,103 +1,36 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { baseUrl } from "../constants";
+import {Link} from 'react-router-dom';
 
-const people = [
-    {
-      name: 'Leslie Alexander',
-      email: 'leslie.alexander@example.com',
-      role: 'Co-Founder / CEO',
-      imageUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
-    },
-    {
-      name: 'Michael Foster',
-      email: 'michael.foster@example.com',
-      role: 'Co-Founder / CTO',
-      imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
-    },
-    {
-      name: 'Dries Vincent',
-      email: 'dries.vincent@example.com',
-      role: 'Business Relations',
-      imageUrl:
-        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: null,
-    },
-    {
-      name: 'Lindsay Walton',
-      email: 'lindsay.walton@example.com',
-      role: 'Front-end Developer',
-      imageUrl:
-        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
-    },
-    {
-      name: 'Courtney Henry',
-      email: 'courtney.henry@example.com',
-      role: 'Designer',
-      imageUrl:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: '3h ago',
-      lastSeenDateTime: '2023-01-23T13:23Z',
-    },
-    {
-      name: 'Tom Cook',
-      email: 'tom.cook@example.com',
-      role: 'Director of Product',
-      imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-      lastSeen: null,
-    },
-  ]
 
-  const baseUrl = 'http://localhost:3030/jsonstore/advanced/articles/list';
+export default function Articles() {
+  const [articles, setArticles] = useState([]);
 
-  export default function Articles() {
-    const [articles, setArticles] = useState([]);
-    
-    useEffect(() => {
-        (async () => {
-          const response = await fetch(baseUrl);
-          const result = await response.json();
-          // const articles = Object.values(result);
-          setArticles(result);
-          console.log(result);  
-        })();
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`${baseUrl}/list`);
+      const result = await response.json();
+      // const articles = Object.values(result);
+      setArticles(result);
+      console.log(result);
+    })();
+  }, []);
 
-    }, []);
-
-    return (
-      <ul role="list" className="mt-20 p-20 divide-y divide-gray-100">
-        {articles.map((article) => (
-          <li key={article._id} className="flex justify-between gap-x-6 py-5">
+  return (
+    <ul role="list" className="mt-20 p-20 divide-y divide-gray-100">
+      {articles.map((article) => (
+        <Link to={`/articles/${article._id}`} key={article._id} >
+          <li className="flex justify-between gap-x-6 py-5">
             <div className="flex min-w-0 gap-x-4">
               <div className="min-w-0 flex-auto">
-                <p className="text-sm/6 font-semibold text-gray-900">{article.title}</p>
+                <p className="text-sm/6 font-semibold text-gray-900">
+                  {article.title}
+                </p>
               </div>
             </div>
-            {/* <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-              <p className="text-sm/6 text-gray-900">{article.role}</p>
-              {article.lastSeen ? (
-                <p className="mt-1 text-xs/5 text-gray-500">
-                  Last seen <time dateTime={article.lastSeenDateTime}>{article.lastSeen}</time>
-                </p>
-              ) : (
-                <div className="mt-1 flex items-center gap-x-1.5">
-                  <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                    <div className="size-1.5 rounded-full bg-emerald-500" />
-                  </div>
-                  <p className="text-xs/5 text-gray-500">Online</p>
-                </div>
-              )}
-            </div> */}
           </li>
-        ))}
-      </ul>
-    )
-  }
-  
+        </Link>
+      ))}
+    </ul>
+  );
+}
