@@ -1,15 +1,24 @@
 import {useEffect, useState} from 'react';
 import { baseUrl } from '../constants';
-import { useParams } from 'react-router';
+import { useParams, useLocation, useNavigate } from 'react-router';
 
 
 export default function ArticleDetails() {
     const [article, setArticle] = useState({});
     const {articleId} = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    console.log(location);
 
     useEffect(() => {
         (async () => {
             const response = await fetch(`${baseUrl}/details/${articleId}`);
+            if(response.status === 204){
+                //TODO redirect
+                navigate('/404');
+                return;
+            }
             const result = await response.json();
             setArticle(result);
         })();
