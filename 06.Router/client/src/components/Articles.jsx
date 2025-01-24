@@ -7,13 +7,21 @@ export default function Articles() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
+    const abortController = new AbortController();
     (async () => {
-      const response = await fetch(`${baseUrl}/list`);
+      const response = await fetch(`${baseUrl}/list`, {
+        signal: abortController.signal
+      });
       const result = await response.json();
       // const articles = Object.values(result);
       setArticles(result);
       console.log(result);
     })();
+
+    return () => {
+      abortController.abort();
+    }
+
   }, []);
 
   return (
