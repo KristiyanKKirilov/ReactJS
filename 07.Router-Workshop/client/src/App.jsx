@@ -1,8 +1,10 @@
+import Header from "./components/header/Header";
+
 function App() {
   return (
-     <>
-        <h1>Working</h1>
-     </>
+     <div id="box">
+        <Header/>
+     </div>
   );
 }
 
