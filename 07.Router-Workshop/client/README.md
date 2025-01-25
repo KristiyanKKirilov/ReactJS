@@ -6,6 +6,7 @@
 - [X] Add base vite react project as client
 - [X] CleanUp client
 - [X] Add resources
+- [X] Convert html to jsx
 - [ ] Seperate html into components
 ## 2. React Router
 - [] Install react-router-dom
