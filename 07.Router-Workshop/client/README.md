@@ -4,8 +4,8 @@
 - [X] Add server
 - [X] Initialize git repo
 - [X] Add base vite react project as client
-- [ ] CleanUp client
-- [ ] Add resources
+- [X] CleanUp client
+- [X] Add resources
 - [ ] Seperate html into components
 ## 2. React Router
 - [] Install react-router-dom
