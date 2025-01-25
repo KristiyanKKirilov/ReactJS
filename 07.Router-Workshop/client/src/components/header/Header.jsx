@@ -2,7 +2,7 @@ export default function Header() {
     return (
         <header>
             {/* <!-- Navigation --> */}
-            <h1><a class="home" href="#">GamesPlay</a></h1>
+            <h1><a className="home" href="#">GamesPlay</a></h1>
             <nav>
                 <a href="#">All games</a>
                 {/* <!-- Logged-in users --> */}
