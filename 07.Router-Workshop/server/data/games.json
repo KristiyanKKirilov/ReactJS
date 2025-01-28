@@ -14,5 +14,13 @@
         "imageUrl": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1551360/capsule_616x353.jpg?t=1737050285",
         "summary": "Car lovers will deeply fall in love with this game",
         "_id": "83bb819d-0e1a-4f4e-b36e-4a019f19432c"
+    },
+    "c54de39a-6643-4dcb-9d29-6ed55619024c": {
+        "title": "SpiderMan Miles Morales",
+        "category": "Action",
+        "maxLevel": "22",
+        "imageUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202008/1423/cZaoNGoCXpClHpljuPVPSUlw.jpg",
+        "summary": "Get into spidy shoes, save the city after successful completion of all missions",
+        "_id": "c54de39a-6643-4dcb-9d29-6ed55619024c"
     }
 }
