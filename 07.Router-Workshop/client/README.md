@@ -14,5 +14,6 @@
 - [X] Add routes in App.jsx
 - [X] Add links to navigation
 ## 3. Create Service Layer
-- [] Service Layer Architecture
-- [] Abstract requester
+- [X] Service Layer Architecture
+- [X] Abstract requester
+- [X] Add games api

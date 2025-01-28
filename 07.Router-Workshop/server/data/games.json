@@ -1,0 +1,18 @@
+{
+    "3f2d4e66-a59c-4f1f-b470-1a48032f8c51": {
+        "title": "Cover Fire",
+        "category": "Action",
+        "maxLevel": "4",
+        "imageUrl": "/images/avatar-1.jpg",
+        "summary": "Adventure game",
+        "_id": "3f2d4e66-a59c-4f1f-b470-1a48032f8c51"
+    },
+    "83bb819d-0e1a-4f4e-b36e-4a019f19432c": {
+        "title": "Forza Horizon 5",
+        "category": "Racing",
+        "maxLevel": "99",
+        "imageUrl": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1551360/capsule_616x353.jpg?t=1737050285",
+        "summary": "Car lovers will deeply fall in love with this game",
+        "_id": "83bb819d-0e1a-4f4e-b36e-4a019f19432c"
+    }
+}
