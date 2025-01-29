@@ -3,4 +3,6 @@ export default interface Game {
     title: string;
     imageUrl: string;
     category: string;
+    maxLevel: number;
+    summary: string;
 }
