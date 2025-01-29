@@ -8,6 +8,7 @@ import Loader from "../../shared/Loader";
 
 export default function GameDetails() {
   const [game, setGame] = useState<Game | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
 
   useEffect(() => {
@@ -19,6 +20,17 @@ export default function GameDetails() {
 
   if(!game){
     return <Loader/>
+  }
+
+  async function deleteGame(){
+    try {
+        if(gameId){
+            await gamesAPI.deleteGame(gameId);
+            
+        }
+    } catch (error) {
+        setError('Failed to delete the game.');
+    }
   }
 
   return (
@@ -39,7 +51,7 @@ export default function GameDetails() {
           <Link to={`/games/${game._id}/edit`} className="button">
             Edit
           </Link>
-          <Link to="games" className="button">
+          <Link to="/games" className="button" onClick={deleteGame}>
             Delete
           </Link>
         </div>
