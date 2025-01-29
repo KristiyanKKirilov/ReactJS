@@ -6,7 +6,6 @@ import * as gamesAPI from "../../../api/games-api";
 import Game from "../../../types/Game";
 
 export default function GameCreate() {
-  const [game, setGame] = useState<Game | null>(null);
   const [formValues, setFormValues] = useState<Game>({
     _id: "",
     title: "",
@@ -27,14 +26,12 @@ export default function GameCreate() {
 
     const uniqueId = uuidv4();
     const gameWithId = {...formValues, _id: uniqueId};
-    console.log(gameWithId);
     try {
         
         const createdGame = await gamesAPI.createGame(gameWithId);
-        setGame(createdGame);
 
         setFormValues({
-            _id: "", // Resetting the ID to an empty string as it is auto-generated
+            _id: "", 
             title: "",
             category: "",
             maxLevel: 0,
@@ -42,7 +39,6 @@ export default function GameCreate() {
             summary: "",
           });
 
-          console.log("Game created successfully!", createdGame);
     } catch (error) {
         setError("Failed to create the game. Please try again later.");
       console.error("Error creating game:", error);
