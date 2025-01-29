@@ -4,7 +4,8 @@ import { get } from "./requester";
 const BASE_URL = "http://localhost:3030/jsonstore/games";
 
 export const getAll = async (): Promise<Game[]> => {
-  const games: Game[] = await get<Game[]>(BASE_URL);
+  const result: Record<string, Game> = await get<Record<string, Game>>(BASE_URL);
+  const games: Game[] = Object.values(result);
   return games;
 };
 

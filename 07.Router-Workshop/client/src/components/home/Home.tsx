@@ -10,7 +10,8 @@ export default function Home() {
     useEffect(() => {
         (async () => {
             const result: Game[] = await gamesAPI.getAll();
-            setLatestGames(result.reverse().slice(0, 3));  
+            const games = Object.values(result);
+            setLatestGames(games.reverse().slice(0, 3));  
         })();
     }, []);
 
