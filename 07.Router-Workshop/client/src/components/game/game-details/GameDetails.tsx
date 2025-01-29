@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import gamesAPI from "../../../api/games-api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import Game from "../../../types/Game";
 import Loader from "../../shared/Loader";
@@ -36,12 +36,12 @@ export default function GameDetails() {
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">
-          <a href="#" className="button">
+          <Link to={`/games/${game._id}/edit`} className="button">
             Edit
-          </a>
-          <a href="#" className="button">
+          </Link>
+          <Link to="games" className="button">
             Delete
-          </a>
+          </Link>
         </div>
       </div>
 
