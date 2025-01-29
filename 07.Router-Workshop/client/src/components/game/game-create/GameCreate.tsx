@@ -4,6 +4,7 @@ import {v4 as uuidv4} from "uuid";
 import * as gamesAPI from "../../../api/games-api";
 
 import Game from "../../../types/Game";
+import { useNavigate } from "react-router-dom";
 
 export default function GameCreate() {
   const [formValues, setFormValues] = useState<Game>({
@@ -14,6 +15,7 @@ export default function GameCreate() {
     imageUrl: "",
     summary: "",
   });
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<String | null>(null);
@@ -38,6 +40,7 @@ export default function GameCreate() {
             imageUrl: "",
             summary: "",
           });
+          navigate('/games');
 
     } catch (error) {
         setError("Failed to create the game. Please try again later.");

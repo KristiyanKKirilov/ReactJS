@@ -1,11 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Game from "../../../types/Game";
 import gamesAPI from "../../../api/games-api";
 import Loader from "../../shared/Loader";
 
 export default function GameEdit() {
   const { gameId } = useParams<{ gameId: string }>();
+  const navigate = useNavigate();
 
   const [game, setGame] = useState<Game | null>(null);
   const [formValues, setFormValues] = useState<Game>({
@@ -52,6 +53,7 @@ export default function GameEdit() {
     try {
       if (gameId) {
         await gamesAPI.editGame(gameId, formValues);
+        navigate(`/games/${gameId}/details`);
       }
     } catch (err) {
       setError("Failed to update the game.");
