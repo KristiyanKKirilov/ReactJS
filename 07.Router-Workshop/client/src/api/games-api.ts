@@ -1,7 +1,6 @@
+import { BASE_URL } from "../constants";
 import Game from "../types/Game";
-import { get } from "./requester";
-
-const BASE_URL = "http://localhost:3030/jsonstore/games";
+import { get, post, put, del } from "./requester";
 
 export const getAll = async (): Promise<Game[]> => {
   const result: Record<string, Game> = await get<Record<string, Game>>(BASE_URL);
@@ -11,6 +10,9 @@ export const getAll = async (): Promise<Game[]> => {
 
 export const getOne = (gameId: string): Promise<Game> =>
   get<Game>(`${BASE_URL}/${gameId}`);
+
+export const createGame = (gameData: Game): Promise<Game> => 
+    post<Game>(`${BASE_URL}`, gameData);
 
 const gamesAPI = {
   getAll,
