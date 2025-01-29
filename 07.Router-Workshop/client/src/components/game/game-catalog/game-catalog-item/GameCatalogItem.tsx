@@ -1,11 +1,12 @@
 import {Link} from 'react-router-dom';
+import Game from '../../../../types/Game';
 
 export default function GameCatalogItem({
     _id,
     title,
     category,
     imageUrl
-}) {
+} :Game) {
     return (
          <div className="allGames">
             <div className="allGames-info">

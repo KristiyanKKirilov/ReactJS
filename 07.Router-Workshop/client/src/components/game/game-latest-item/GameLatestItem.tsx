@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom';
-import GameLatestItemProps from '../../../types/GameLatestItemProps';
+import Game from '../../../types/Game';
 
 export default function GameLatestItem({
     imageUrl,
     title,
     _id
-}: GameLatestItemProps) {
+}: Game) {
     return (
              <div className="game">
                 <div className="image-wrap">

@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import * as gamesAPI from '../../../api/games-api';
 import GameCatalogItem from './game-catalog-item/GameCatalogItem';
+import Game from '../../../types/Game';
 
 export default function GameCatalog() {
-    const [games, setGames] = useState([]);
+    const [games, setGames] = useState<Game[]>([]);
 
     useEffect(() => {
         gamesAPI.getAll()
