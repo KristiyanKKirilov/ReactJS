@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import gamesAPI from "../../api/games-api";
+import Game from "../../types/Game";
+
 import GameLatestItem from "../game/game-latest-item/GameLatestItem";
 
 export default function Home() {
-    const [latestGames, setLatestGames] = useState([]);
+    const [latestGames, setLatestGames] = useState<Game[]>([]);
 
     useEffect(() => {
         (async () => {
-            const result = await gamesAPI.getAll();
+            const result: Game[] = await gamesAPI.getAll();
             setLatestGames(result.reverse().slice(0, 3));  
         })();
     }, []);
