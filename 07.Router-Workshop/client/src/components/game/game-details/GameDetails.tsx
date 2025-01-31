@@ -1,23 +1,27 @@
 import { FormEvent, useEffect, useState } from "react";
 
 import gamesAPI from "../../../api/games-api";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import Game from "../../../types/Game";
 import Loader from "../../shared/Loader";
 import commentsApi from "../../../api/comments-api";
+import { Comment } from "../../../types/Comment";
+import CommentItem from "./comment-item/CommentItem";
 
 export default function GameDetails() {
   const [game, setGame] = useState<Game | null>(null);
-  const [comments, setComments] = useState<Comment | null>(null);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [username, setUsername] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (gameId) {
       gamesAPI.getOne(gameId).then((game) => setGame(game));
+      commentsApi.getAll(gameId).then((comments) => setComments(comments));
     }
   }, [gameId]);
 
@@ -37,8 +41,9 @@ export default function GameDetails() {
 
   function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if(gameId){
-        commentsApi.createComment(gameId, username, comment);
+    if (gameId) {
+      commentsApi.create(gameId, username, comment);
+      navigate(`/games/${gameId}/details`);
     }
     console.log(username);
     console.log(comment);
@@ -67,18 +72,16 @@ export default function GameDetails() {
           </Link>
         </div>
 
-            
-        <div className="details-comments">
-          <h2>Comments:</h2>
-          <ul>
-            {/* <!-- list all comments for current game (If any) --> */}
-            <li className="comment">
-              <p>Content: I rate this one quite highly.</p>
-            </li>
-          </ul>
-          {/* <!-- Display paragraph: If there are no games in the database --> */}
+        {comments?.length > 0 ? (
+          <div className="details-comments">
+            <h2>Comments:</h2>
+            <ul>
+            {comments.map(comment => <CommentItem key={comment._id} {...comment}/>)}
+            </ul>
+          </div>
+        ) : (
           <p className="no-comment">No comments.</p>
-        </div>
+        )}
 
         <article className="create-comment">
           <label>Add new comment:</label>
