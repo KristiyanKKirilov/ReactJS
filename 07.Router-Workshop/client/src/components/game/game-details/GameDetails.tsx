@@ -46,12 +46,10 @@ export default function GameDetails() {
       commentsApi.create(gameId, username, comment);
       navigate(`/games/${gameId}/details`, {replace: true});
       setComments([]);
-      
+
       setUsername("");
       setComment("");
     }
-    console.log(username);
-    console.log(comment);
   }
 
   return (
