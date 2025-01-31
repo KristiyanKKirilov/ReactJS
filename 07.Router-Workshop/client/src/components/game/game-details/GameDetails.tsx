@@ -44,9 +44,14 @@ export default function GameDetails() {
     e.preventDefault();
     if (gameId) {
       commentsApi.create(gameId, username, comment);
-      navigate(`/games/${gameId}/details`, {replace: true});
       setComments([]);
-
+    //setGame(prevState => ({
+    // ..prevState,
+    // comments: {
+        // ...prevState.comments,
+        // newComment
+    // }}))  
+    
       setUsername("");
       setComment("");
     }
