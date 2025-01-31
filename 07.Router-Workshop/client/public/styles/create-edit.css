@@ -20,6 +20,18 @@ input[type="text"] {
     font-size: 24px;
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
+    max-width:100%;
+}
+
+select {
+    background: #ecf0f3;
+    padding: 15px;
+    padding-left: 20px; 
+    margin-top: 10px;
+    font-size: 24px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #c0c2c5, inset -6px -6px 6px white;
+    max-width:100%;
 }
 
 textarea {
