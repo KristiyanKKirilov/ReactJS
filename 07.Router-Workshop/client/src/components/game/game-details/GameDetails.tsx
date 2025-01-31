@@ -5,9 +5,11 @@ import { Link, useParams } from "react-router-dom";
 
 import Game from "../../../types/Game";
 import Loader from "../../shared/Loader";
+import commentsApi from "../../../api/comments-api";
 
 export default function GameDetails() {
   const [game, setGame] = useState<Game | null>(null);
+  const [comments, setComments] = useState<Comment | null>(null);
   const [username, setUsername] = useState<string>("");
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +37,9 @@ export default function GameDetails() {
 
   function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if(gameId){
+        commentsApi.createComment(gameId, username, comment);
+    }
     console.log(username);
     console.log(comment);
   }
@@ -62,15 +67,13 @@ export default function GameDetails() {
           </Link>
         </div>
 
+            
         <div className="details-comments">
           <h2>Comments:</h2>
           <ul>
             {/* <!-- list all comments for current game (If any) --> */}
             <li className="comment">
               <p>Content: I rate this one quite highly.</p>
-            </li>
-            <li className="comment">
-              <p>Content: The best game.</p>
             </li>
           </ul>
           {/* <!-- Display paragraph: If there are no games in the database --> */}
