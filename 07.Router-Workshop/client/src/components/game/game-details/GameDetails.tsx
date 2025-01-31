@@ -22,6 +22,7 @@ export default function GameDetails() {
     if (gameId) {
       gamesAPI.getOne(gameId).then((game) => setGame(game));
       commentsApi.getAll(gameId).then((comments) => setComments(comments));
+
     }
   }, [gameId, comments]);
 
@@ -39,15 +40,15 @@ export default function GameDetails() {
     }
   }
 
-  function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
+   function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (gameId) {
       commentsApi.create(gameId, username, comment);
       navigate(`/games/${gameId}/details`, {replace: true});
-
-      setUsername('');
-      setComment('');
-
+      setComments([]);
+      
+      setUsername("");
+      setComment("");
     }
     console.log(username);
     console.log(comment);
@@ -80,7 +81,9 @@ export default function GameDetails() {
           <div className="details-comments">
             <h2>Comments:</h2>
             <ul>
-            {comments.map(comment => <CommentItem key={comment._id} {...comment}/>)}
+              {comments.map((comment) => (
+                <CommentItem key={comment._id} {...comment} />
+              ))}
             </ul>
           </div>
         ) : (
