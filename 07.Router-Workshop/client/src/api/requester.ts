@@ -28,3 +28,5 @@ export const get = <T> (url:string) => requester<T>('GET', url);
 export const post = <T> (url:string, data: unknown) => requester<T>('POST', url, data);
 export const put = <T> (url:string, data: unknown) => requester<T>('PUT', url, data);
 export const del = <T> (url:string) => requester<T>('DELETE', url);
+
+

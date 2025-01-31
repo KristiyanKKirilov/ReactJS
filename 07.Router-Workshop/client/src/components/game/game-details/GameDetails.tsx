@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import gamesAPI from "../../../api/games-api";
 import { Link, useParams } from "react-router-dom";
@@ -8,6 +8,8 @@ import Loader from "../../shared/Loader";
 
 export default function GameDetails() {
   const [game, setGame] = useState<Game | null>(null);
+  const [username, setUsername] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
 
@@ -16,21 +18,25 @@ export default function GameDetails() {
       gamesAPI.getOne(gameId).then((game) => setGame(game));
     }
   }, [gameId]);
-  
 
-  if(!game){
-    return <Loader/>
+  if (!game) {
+    return <Loader />;
   }
 
-  async function deleteGame(){
+  async function deleteGame() {
     try {
-        if(gameId){
-            await gamesAPI.deleteGame(gameId);
-            
-        }
+      if (gameId) {
+        await gamesAPI.deleteGame(gameId);
+      }
     } catch (error) {
-        setError('Failed to delete the game.');
+      setError("Failed to delete the game.");
     }
+  }
+
+  function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log(username);
+    console.log(comment);
   }
 
   return (
@@ -55,9 +61,40 @@ export default function GameDetails() {
             Delete
           </Link>
         </div>
-      </div>
 
-    
+        <div className="details-comments">
+          <h2>Comments:</h2>
+          <ul>
+            {/* <!-- list all comments for current game (If any) --> */}
+            <li className="comment">
+              <p>Content: I rate this one quite highly.</p>
+            </li>
+            <li className="comment">
+              <p>Content: The best game.</p>
+            </li>
+          </ul>
+          {/* <!-- Display paragraph: If there are no games in the database --> */}
+          <p className="no-comment">No comments.</p>
+        </div>
+
+        <article className="create-comment">
+          <label>Add new comment:</label>
+          <form className="form" onSubmit={commentSubmitHandler}>
+            <input
+              type="text"
+              placeholder="Tom"
+              name="username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <textarea
+              name="comment"
+              placeholder="Comment......"
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+            <input className="btn submit" type="submit" value="Add Comment" />
+          </form>
+        </article>
+      </div>
     </section>
   );
 }
