@@ -23,7 +23,7 @@ export default function GameDetails() {
       gamesAPI.getOne(gameId).then((game) => setGame(game));
       commentsApi.getAll(gameId).then((comments) => setComments(comments));
     }
-  }, [gameId]);
+  }, [gameId, comments]);
 
   if (!game) {
     return <Loader />;
@@ -43,7 +43,11 @@ export default function GameDetails() {
     e.preventDefault();
     if (gameId) {
       commentsApi.create(gameId, username, comment);
-      navigate(`/games/${gameId}/details`);
+      navigate(`/games/${gameId}/details`, {replace: true});
+
+      setUsername('');
+      setComment('');
+
     }
     console.log(username);
     console.log(comment);
@@ -90,11 +94,13 @@ export default function GameDetails() {
               type="text"
               placeholder="Tom"
               name="username"
+              value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <textarea
               name="comment"
               placeholder="Comment......"
+              value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
             <input className="btn submit" type="submit" value="Add Comment" />
