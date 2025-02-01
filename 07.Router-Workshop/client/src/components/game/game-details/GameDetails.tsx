@@ -17,7 +17,6 @@ export default function GameDetails() {
   const [text, setText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (gameId) {
@@ -55,18 +54,6 @@ export default function GameDetails() {
 
     setComments((prevComments) => [...prevComments, newComment]);
 
-    // setGame((prevGame) =>
-    // {
-    //   if(!prevGame ||) return null;
-
-    //   return {
-    //     ...prevGame, 
-    //     comments: [...prevGame.comments, newComment]
-    //   };
-    // }
-    // );
-
-    // Reset input fields
     setUsername("");
     setText("");
   }
