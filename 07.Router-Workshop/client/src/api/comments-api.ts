@@ -1,15 +1,14 @@
 import { BASE_URL } from "../constants";
-import { Comment } from "../types/Comment";
+import  GameComment  from "../types/GameComment";
 import { get, post } from "./requester";
 
-const getAll = async (gameId: string): Promise<Comment[]> => {
-    const result: Record<string, Comment> = await get(`${BASE_URL}/${gameId}/comments`);
-    const comments: Comment[] = Object.values(result);
+const getAll = async (gameId: string): Promise<GameComment[]> => {
+    const result: Record<string, GameComment> = await get(`${BASE_URL}/${gameId}/comments`);
+    const comments: GameComment[] = Object.values(result);
     return comments;
 }
-
-const create = (gameId: string, username: string, text: string) =>
-  post(`${BASE_URL}/${gameId}/comments`, { username, text });
+const create = async (gameId: string, comment: GameComment) =>
+  post(`${BASE_URL}/${gameId}/comments`, comment);
 
 
 export default{

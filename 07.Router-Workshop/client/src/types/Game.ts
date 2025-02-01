@@ -1,3 +1,5 @@
+import GameComment from "./GameComment";
+
 export default interface Game {
     _id: string;
     title: string;
@@ -5,4 +7,5 @@ export default interface Game {
     maxLevel: number;
     imageUrl: string;
     summary: string;
+    comments: GameComment[];
 }

@@ -2,18 +2,19 @@ import { FormEvent, useEffect, useState } from "react";
 
 import gamesAPI from "../../../api/games-api";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import Game from "../../../types/Game";
 import Loader from "../../shared/Loader";
 import commentsApi from "../../../api/comments-api";
-import { Comment } from "../../../types/Comment";
+import GameComment  from "../../../types/GameComment";
 import CommentItem from "./comment-item/CommentItem";
 
 export default function GameDetails() {
   const [game, setGame] = useState<Game | null>(null);
-  const [comments, setComments] = useState<Comment[]>([]);
+  const [comments, setComments] = useState<GameComment[]>([]);
   const [username, setUsername] = useState<string>("");
-  const [comment, setComment] = useState<string>("");
+  const [text, setText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
@@ -22,9 +23,8 @@ export default function GameDetails() {
     if (gameId) {
       gamesAPI.getOne(gameId).then((game) => setGame(game));
       commentsApi.getAll(gameId).then((comments) => setComments(comments));
-
     }
-  }, [gameId, comments]);
+  }, [gameId]);
 
   if (!game) {
     return <Loader />;
@@ -40,21 +40,35 @@ export default function GameDetails() {
     }
   }
 
-   function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
+  async function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (gameId) {
-      commentsApi.create(gameId, username, comment);
-      setComments([]);
-    //setGame(prevState => ({
-    // ..prevState,
-    // comments: {
-        // ...prevState.comments,
-        // newComment
-    // }}))  
-    
-      setUsername("");
-      setComment("");
-    }
+    if (!gameId || !game) return;
+
+    const uniqueId = uuidv4();
+    const newComment: GameComment = {
+      _id: uniqueId,
+      username: username,
+      text: text,
+    };
+
+    commentsApi.create(gameId, newComment);
+
+    setComments((prevComments) => [...prevComments, newComment]);
+
+    // setGame((prevGame) =>
+    // {
+    //   if(!prevGame ||) return null;
+
+    //   return {
+    //     ...prevGame, 
+    //     comments: [...prevGame.comments, newComment]
+    //   };
+    // }
+    // );
+
+    // Reset input fields
+    setUsername("");
+    setText("");
   }
 
   return (
@@ -84,7 +98,7 @@ export default function GameDetails() {
           <div className="details-comments">
             <h2>Comments:</h2>
             <ul>
-              {comments.map((comment) => (
+              {comments.map((comment: GameComment) => (
                 <CommentItem key={comment._id} {...comment} />
               ))}
             </ul>
@@ -106,8 +120,8 @@ export default function GameDetails() {
             <textarea
               name="comment"
               placeholder="Comment......"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
             ></textarea>
             <input className="btn submit" type="submit" value="Add Comment" />
           </form>

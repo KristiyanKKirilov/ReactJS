@@ -15,6 +15,7 @@ export default function GameCreate() {
     maxLevel: 0,
     imageUrl: "",
     summary: "",
+    comments: []
   });
   const [categories, setCategories] = useState<string[]>([
     "Action",
@@ -47,6 +48,7 @@ export default function GameCreate() {
         maxLevel: 0,
         imageUrl: "",
         summary: "",
+        comments: []
       });
       navigate("/games");
     } catch (error) {
