@@ -1,0 +1,5 @@
+.article-list{
+  display: flex;
+  padding: 2em;
+  justify-content: space-around;
+}
