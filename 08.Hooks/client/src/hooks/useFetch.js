@@ -7,13 +7,16 @@ export function useFetch(url, initialData){
 
     useEffect(() => {
         setIsFetching(true);
+        const abortController = new AbortController();
 
         (async () => {
-            const response = await fetch(url);
+            const response = await fetch(url, {signal: abortController.signal});
             const result = await response.json();
             setData(result);
             setIsFetching(false);
         })();
+
+        return () => abortController.abort();
     }, [url, toggleRefetch]);
 
     const refetch = () => {
