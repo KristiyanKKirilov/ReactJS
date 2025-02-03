@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/nav-bar/NavBar";
 import ArticleList from "./components/article-list/ArticleList";
 import Article from "./components/article/Article";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 
 function App() {
 
@@ -10,7 +10,7 @@ function App() {
    <>
         <NavBar/>
         <Routes>
-          {/* <Routes path='/' element={<ArticleList/>}/> */}
+          <Route path='/' element={<Navigate to='/articles'/>}/>
           <Route path='/articles' element={<ArticleList/>}/>
           <Route path='/articles/:articleId' element={<Article/>}/>
         </Routes>
