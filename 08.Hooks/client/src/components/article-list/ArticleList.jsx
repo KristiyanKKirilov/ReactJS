@@ -7,7 +7,7 @@ import styles from "./ArticleList.module.css";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function ArticleList() {
-    const { data: articles, isFetching, refetch } = useFetch(BASE_URL, []);
+    const { data: articles, isFetching, refetch } = useFetch(`${BASE_URL}/list`, []);
     return (
         <>
         {!isFetching ? (
@@ -20,7 +20,7 @@ export default function ArticleList() {
           <LoadingSpinner />
         )}
   
-          <Button variant="dark" onClick={refetch}>Refetch</Button>
+          <Button variant="dark" onClick={refetch} className={styles["btn"]}>Refetch</Button>
       </>
     );
 }

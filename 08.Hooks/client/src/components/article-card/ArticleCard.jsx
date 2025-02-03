@@ -1,5 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import {Link, NavLink} from 'react-router-dom';
+import styles from './ArticleCard.module.css';
+
 
 export default function ArticleCard({
     _id,
@@ -15,7 +18,7 @@ export default function ArticleCard({
           Some quick example text to build on the card title and make up the
           bulk of the card's content.   
         </Card.Text> */}
-        <Button variant="danger">Details</Button>
+        <Button as={Link} to={`${_id}`} className={styles['details-btn']} variant="danger">Details</Button>
       </Card.Body>
     </Card>
   );
