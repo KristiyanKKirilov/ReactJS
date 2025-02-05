@@ -1,12 +1,17 @@
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./ArticleCreate.module.css";
 import { useForm } from "../../hooks/useForm";
 import { BASE_URL } from "../../constants";
-import { useNavigate } from "react-router-dom";
 
 export default function ArticleCreate() {
   const navigate = useNavigate();
+  const {user} = useContext(UserContext);
+
   const fields = {
     title: "title",
     content: "content",
@@ -38,9 +43,8 @@ export default function ArticleCreate() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: values.title,
-        content: values.content,
-        imageUrl: values.imageUrl
+        ...values,
+        author: user.username
       }),
     });
 
