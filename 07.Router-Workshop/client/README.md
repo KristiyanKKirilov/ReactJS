@@ -17,3 +17,21 @@
 - [X] Service Layer Architecture
 - [X] Abstract requester
 - [X] Add games api
+## 4. Components
+## 5. Comments
+## 6. Custom Hooks
+- [ ] GameAPI hooks
+- [ ] Comment hooks 
+- [ ] Form hook
+## 7. Authentication
+- [ ] Auth Api
+- [ ] Auth Api Hook
+- [ ] Auth state and content 
+- [ ] Login
+- [ ] Register
+- [ ] Logout
+  ## 8. UI Implementation
+- [ ] Dynamic Navigation
+- [ ] Create Game
+  - [ ] Api function
+  - [ ] Create custom hook 
