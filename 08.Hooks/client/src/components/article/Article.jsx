@@ -10,6 +10,7 @@ export default function Article() {
         <>
             <h1>{article.title}</h1>
             <p>{article.content}</p>
+            <img src={article.imageUrl}/>
         </>
     );
 }

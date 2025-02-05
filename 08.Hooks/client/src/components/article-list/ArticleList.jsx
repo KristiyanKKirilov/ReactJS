@@ -7,12 +7,12 @@ import styles from "./ArticleList.module.css";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 export default function ArticleList() {
-    const { data: articles, isFetching, refetch } = useFetch(`${BASE_URL}/list`, []);
+    const { data: articles, isFetching, refetch } = useFetch(`${BASE_URL}/details`, {});
     return (
         <>
         {!isFetching ? (
           <div className={styles["article-list"]}>
-            {articles.map((article) => (
+            {Object.values(articles).map((article) => (
               <ArticleCard key={article._id} {...article} />
             ))}
           </div>
