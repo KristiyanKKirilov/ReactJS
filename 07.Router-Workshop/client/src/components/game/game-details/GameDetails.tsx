@@ -17,8 +17,7 @@ export default function GameDetails() {
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
   const [game, setGame] = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
-  const [comments, setComments] = useState<GameComment[]>(game?.comments || []);
-  
+    
 
   if (!game) {
     return <Loader />;

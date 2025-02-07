@@ -20,7 +20,7 @@
 ## 4. Components
 ## 5. Comments
 ## 6. Custom Hooks
-- [ ] GameAPI hooks
+- [X] GameAPI hooks
 - [ ] Comment hooks 
 - [X] Form hook
 ## 7. Authentication

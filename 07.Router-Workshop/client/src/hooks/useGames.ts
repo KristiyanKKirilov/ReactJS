@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import gamesAPI from "../api/games-api";
-import commentsApi from '../api/comments-api';
 import Game from "../types/Game";
-import { useParams } from "react-router-dom";
-import GameComment from "../types/GameComment";
+import { v4 as uuidv4 } from "uuid";
+
 
 export function useGetAllGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -30,3 +29,4 @@ export function useGetOneGame(gameId: string) {
 
   return [game, setGame];
 }
+

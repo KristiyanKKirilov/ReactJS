@@ -16,6 +16,7 @@ export default function GameEdit() {
     maxLevel: 0,
     imageUrl: "",
     summary: "",
+    comments: []
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

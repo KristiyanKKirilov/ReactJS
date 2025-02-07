@@ -36,10 +36,10 @@ export default function GameCreate() {
     setIsLoading(true);
     setError(null);
 
-    const uniqueId = uuidv4();
-    const gameWithId = { ...formValues, _id: uniqueId };
     try {
-      const createdGame = await gamesAPI.createGame(gameWithId);
+      const uniqueId = uuidv4();
+      const gameWithId = { ...formValues, _id: uniqueId };
+      gamesAPI.createGame(gameWithId);
 
       setFormValues({
         _id: "",
