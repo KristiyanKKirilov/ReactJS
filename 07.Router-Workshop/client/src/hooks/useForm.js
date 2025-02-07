@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function useForm(initialValues, submitCallback){
+function useForm(initialValues , submitCallback){
     const [values, setValues] = useState(initialValues);
 
     const changeHandler = (e) => {

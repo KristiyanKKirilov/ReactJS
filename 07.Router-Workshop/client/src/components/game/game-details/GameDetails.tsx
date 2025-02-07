@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
 
 import gamesAPI from "../../../api/games-api";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -9,21 +9,16 @@ import Loader from "../../shared/Loader";
 import commentsApi from "../../../api/comments-api";
 import GameComment  from "../../../types/GameComment";
 import CommentItem from "./comment-item/CommentItem";
+import { useGetOneGame } from "../../../hooks/useGames";
 
 export default function GameDetails() {
-  const [game, setGame] = useState<Game | null>(null);
-  const [comments, setComments] = useState<GameComment[]>([]);
   const [username, setUsername] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const { gameId } = useParams<{ gameId: string }>();
-
-  useEffect(() => {
-    if (gameId) {
-      gamesAPI.getOne(gameId).then((game) => setGame(game));
-      commentsApi.getAll(gameId).then((comments) => setComments(comments));
-    }
-  }, [gameId]);
+  const [game, setGame] = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
+  const [comments, setComments] = useState<GameComment[]>(game?.comments || []);
+  
 
   if (!game) {
     return <Loader />;
@@ -51,9 +46,15 @@ export default function GameDetails() {
     };
 
     commentsApi.create(gameId, newComment);
-
-    setComments((prevComments) => [...prevComments, newComment]);
-
+    console.log(game.comments);
+    // setComments((prevComments) => [...prevComments, newComment]);
+    setGame(prevState => ({
+        ...prevState,
+        comments:{
+          ...prevState.comments,
+          [newComment._id]: newComment
+        }
+    }))
     setUsername("");
     setText("");
   }
@@ -81,11 +82,11 @@ export default function GameDetails() {
           </Link>
         </div>
 
-        {comments?.length > 0 ? (
+        {Object.values(game.comments)?.length > 0 ? (
           <div className="details-comments">
             <h2>Comments:</h2>
             <ul>
-              {comments.map((comment: GameComment) => (
+              {Object.values(game?.comments).map((comment: GameComment) => (
                 <CommentItem key={comment._id} {...comment} />
               ))}
             </ul>
