@@ -24,8 +24,14 @@
 - [ ] Comment hooks 
 - [X] Form hook
 ## 7. Authentication
-- [ ] Auth Api
-- [ ] Auth Api Hook
+- [X] Auth Api
+  - [X] Login
+  - [ ] Register
+  - [ ] Logout
+- [X] Auth Api Hook
+  - [X] Login
+  - [ ] Register
+  - [ ] Logout
 - [ ] Auth state and content 
 - [ ] Login
 - [ ] Register

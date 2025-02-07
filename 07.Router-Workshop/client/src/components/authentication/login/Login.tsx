@@ -1,14 +1,30 @@
+import { useNavigate } from "react-router-dom";
 import { login } from "../../../api/auth-api";
 import { useLogin } from "../../../hooks/useAuth";
 import { useForm } from "../../../hooks/useForm";
+import LoginFormProps from "../../../types/LoginFormProps";
+
+const initialValues = {
+    email: "",
+    password: "",
+};
 
 export default function Login() {
     const login = useLogin();
-    const { values, changeHandler, submitHandler } = useForm(
-        { email: "", password: "" },
-        ({ email, password }) => {
-            login(email, password);
+    const navigate = useNavigate();
+    const loginHandler = async ({ email, password }: LoginFormProps) => {
+        try {
+            await login(email, password);
+            navigate("/");
+        } catch (error) {
+            const err = error as Error;
+            console.log(err.message);
         }
+    };
+
+    const { values, changeHandler, submitHandler } = useForm(
+        initialValues,
+        loginHandler
     );
     return (
         <section id="login-page" className="auth">
