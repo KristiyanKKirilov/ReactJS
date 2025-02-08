@@ -33,10 +33,11 @@
   - [ ] Register
   - [ ] Logout
 - [X] Auth state and content 
-- [ ] Token management
+- [X] Token management
 - [ ] Login
 - [ ] Register
 - [ ] Logout
+- [ ] Authorized requests
   ## 8. UI Implementation
 - [ ] Dynamic Navigation
 - [ ] Create Game
