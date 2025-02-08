@@ -32,7 +32,8 @@
   - [X] Login
   - [ ] Register
   - [ ] Logout
-- [ ] Auth state and content 
+- [X] Auth state and content 
+- [ ] Token management
 - [ ] Login
 - [ ] Register
 - [ ] Logout
