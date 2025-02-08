@@ -1,6 +1,8 @@
+import AuthState from "./AuthState";
+
 export default interface AuthContextType {
     email: string,
     accessToken: string,
     isAuthenticated: boolean,
-    changeAuthState: Function
+    changeAuthState: (state: AuthState) => void
 }
