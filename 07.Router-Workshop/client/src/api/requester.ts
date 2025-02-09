@@ -14,12 +14,13 @@ async function requester<T>(method: 'GET' | 'POST' | 'PUT' | 'DELETE', url: stri
     }
 
     const response = await fetch(url, options);
+    const result = await response.json();
 
     if (!response.ok){
-        throw new Error(`HTTP error! Status: ${response.status}`)
+        // throw new Error(`HTTP error! Status: ${response.status}`);
+        throw result;
     }
 
-    const result = response.json();
 
     return result;
 }

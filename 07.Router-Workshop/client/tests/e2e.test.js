@@ -75,7 +75,7 @@ describe('E2E tests', function () {
 
             await page.fill('[name="email"]', data.email);
             await page.fill('[name="password"]', data.password);
-            await page.fill('[name="confirm-password"]', data.password);
+            await page.fill('[name="rePassword"]', data.password);
 
             const [request] = await Promise.all([
                 onRequest(),
