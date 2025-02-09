@@ -31,7 +31,7 @@ export default function GameCreate() {
         setIsLoading(true);
         try {
             const { _id: gameId } = await createGame(values);
-            navigate(`games/${gameId}/details`);
+            navigate(`/games/${gameId}/details`);
         } catch (error) {
             const err = error as Error;
             console.error("Error creating game:", err);
