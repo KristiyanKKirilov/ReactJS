@@ -7,8 +7,6 @@ async function requester<T>(
         "Content-Type": "application/json",
     };
 
-    // debugger;
-    // Retrieve token and ensure it's not null
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
