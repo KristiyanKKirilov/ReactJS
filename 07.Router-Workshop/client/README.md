@@ -43,3 +43,5 @@
 - [ ] Create Game
   - [ ] Api function
   - [ ] Create custom hook 
+## 9. Refactoring
+- [ ] Extract auth state from App component

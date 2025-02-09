@@ -3,26 +3,26 @@ async function requester<T>(
     url: string,
     data?: unknown
 ): Promise<T> {
-    const headers = new Headers();
+    const headers: HeadersInit = {
+        "Content-Type": "application/json",
+    };
+
+    // debugger;
+    // Retrieve token and ensure it's not null
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
-        headers.set("X-Authorization", accessToken);
+        headers["X-Authorization"] =  accessToken;
     }
 
-    if(data){
-        headers.set("Content-Type", "application/json");
-    }
+    console.log("Headers before request: ", headers);
 
-    const options: RequestInit= {
-        method,
+    const options: RequestInit = {
+        method, 
         headers
-    }
-    
-    if (method !== "GET") {
-        options.method = method;
-    }
+    };
 
+    // Add content type for non-GET requests
     if (data) {
         options.body = JSON.stringify(data);
     }
@@ -31,7 +31,6 @@ async function requester<T>(
     const result = await response.json();
 
     if (!response.ok) {
-        // throw new Error(`HTTP error! Status: ${response.status}`);
         throw result;
     }
 

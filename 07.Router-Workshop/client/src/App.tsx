@@ -1,5 +1,5 @@
 import { Routes, Route} from 'react-router-dom';
-import {AuthContext} from './contexts/AuthContext';
+import {AuthContextProvider} from './contexts/AuthContext';
 
 import Header from "./components/header/Header.jsx";
 import Home from "./components/home/Home";
@@ -9,30 +9,13 @@ import GameCatalog from './components/game/game-catalog/GameCatalog';
 import GameCreate from './components/game/game-create/GameCreate';
 import GameDetails from './components/game/game-details/GameDetails';
 import GameEdit from './components/game/game-edit/GameEdit';
-import { useState } from 'react';
-import AuthContextType from './types/AuthContextType';
-import AuthState from './types/AuthState';
 
 
 function App() {
-   const [authState, setAuthState] = useState<AuthState | null>(null);
-
-   const changeAuthState = (state: AuthState) => {
-      // TODO: Fix by persisted authState implementation
-      localStorage.setItem('accessToken', state.accessToken);
-      setAuthState(state);
-   }
-
-   const contextData: AuthContextType = {
-      userId: authState?._id || '',
-      email: authState?.email || '',
-      accessToken: authState?.accessToken || '',
-      isAuthenticated: !!authState?.email,
-      changeAuthState
-   } 
+  
 
   return (
-   <AuthContext.Provider value={contextData}>
+   <AuthContextProvider>
 
      <div id="box">
         <Header/>
@@ -48,7 +31,7 @@ function App() {
             </Routes>
         </main>
      </div>
-   </AuthContext.Provider>
+   </AuthContextProvider>
   );
 }
 
