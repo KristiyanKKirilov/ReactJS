@@ -7,7 +7,7 @@ export function useForm<T>(
 ): UseFormReturn<T> {
   const [values, setValues] = useState<T>(initialValues);
 
-  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setValues((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,

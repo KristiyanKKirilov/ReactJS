@@ -30,3 +30,11 @@ export function useGetOneGame(gameId: string) {
   return [game, setGame];
 }
 
+export function useCreateGame(){
+  const gameCreateHandler = async (gameData: Game): Promise<Game> => {
+      return await gamesAPI.createGame(gameData);
+  }
+
+  return gameCreateHandler;
+}
+

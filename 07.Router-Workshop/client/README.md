@@ -26,16 +26,16 @@
 ## 7. Authentication
 - [X] Auth Api
   - [X] Login
-  - [ ] Register
+  - [X] Register
   - [ ] Logout
 - [X] Auth Api Hook
   - [X] Login
-  - [ ] Register
+  - [X] Register
   - [ ] Logout
 - [X] Auth state and content 
 - [X] Token management
-- [ ] Login
-- [ ] Register
+- [X] Login
+- [X] Register
 - [ ] Logout
 - [ ] Authorized requests
   ## 8. UI Implementation

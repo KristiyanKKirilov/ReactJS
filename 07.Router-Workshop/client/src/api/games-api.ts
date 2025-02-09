@@ -1,4 +1,4 @@
-import { BASE_URL } from "../constants";
+import { BASE_URL, CREATE_BASE_URL } from "../constants";
 import Game from "../types/Game";
 import { get, post, put, del } from "./requester";
 
@@ -14,7 +14,7 @@ export const getOne = (gameId: string): Promise<Game> =>
   get<Game>(`${BASE_URL}/${gameId}`);
 
 export const createGame = (gameData: Game): Promise<Game> =>
-  post<Game>(`${BASE_URL}`, gameData);
+  post<Game>(`${CREATE_BASE_URL}`, gameData);
 
 export const editGame = (gameId: string, gameData: Game): Promise<Game> =>
   put<Game>(`${BASE_URL}/${gameId}`, gameData);
