@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import AuthContextType from "../types/AuthContextType";
 import AuthState from "../types/AuthState";
 
@@ -26,4 +26,9 @@ export function AuthContextProvider(props:any) {
         {props.children}
     </AuthContext.Provider>
    )
+}
+
+export function useAuthContext () {
+   const authData = useContext(AuthContext);
+   return authData;
 }

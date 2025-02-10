@@ -1,10 +1,8 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import AuthContextType from "../../types/AuthContextType";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
-    const context = useContext(AuthContext);
+    const context = useAuthContext();
 
     if (!context) {
         throw new Error(

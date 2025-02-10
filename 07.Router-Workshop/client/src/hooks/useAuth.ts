@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import {login, register} from '../api/auth-api';
-import { AuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 import AuthState from '../types/AuthState';
 
 export const useLogin = () => {
-    const context = useContext(AuthContext);
+    const context = useAuthContext();
 
     if(!context){
         throw new Error("useLogin must be used within an AuthContextProvider");
@@ -21,7 +20,7 @@ export const useLogin = () => {
 }
 
 export const useRegister = () =>{
-    const context = useContext(AuthContext);
+    const context = useAuthContext();
 
     if(!context){
         throw new Error("useRegister must be used within an AuthContextProvider");
