@@ -9,15 +9,13 @@ async function requester<T>(
 
     const accessToken = localStorage.getItem("accessToken");
 
-    if (accessToken) {
-        headers["X-Authorization"] =  accessToken;
-    }
-
-    console.log("Headers before request: ", headers);
+    // if (accessToken) {
+    //     headers["X-Authorization"] =  accessToken;
+    // }
 
     const options: RequestInit = {
-        method, 
-        headers
+        method,
+        headers,
     };
 
     // Add content type for non-GET requests
