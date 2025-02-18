@@ -11,3 +11,5 @@ export const register = async (email: string, password: string): Promise<AuthSta
     const authData : AuthState = await post(`${AUTH_BASE_URL}/register`, {email, password});
     return authData;
 }
+
+export const logout = () => get(`${AUTH_BASE_URL}/logout`);

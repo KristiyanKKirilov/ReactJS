@@ -7,7 +7,7 @@ async function requester<T>(
         "Content-Type": "application/json",
     };
 
-    const accessToken = localStorage.getItem("accessToken");
+    // const accessToken = localStorage.getItem("accessToken");
 
     // if (accessToken) {
     //     headers["X-Authorization"] =  accessToken;
@@ -24,6 +24,11 @@ async function requester<T>(
     }
 
     const response = await fetch(url, options);
+
+    if (response.status === 204) {
+        return null as T;
+    }
+
     const result = await response.json();
 
     if (!response.ok) {

@@ -19,10 +19,10 @@ const initialType: AuthState = {
 };
 
 export function AuthContextProvider(props: any) {
-    const [authState, setAuthState] = usePersistedState<AuthState>(
+    const [authState, setAuthState] = usePersistedState<AuthState | null>(
         "auth",
         initialType
-    ) as [AuthState, Dispatch<SetStateAction<AuthState>>];
+    ) as [AuthState | null, Dispatch<SetStateAction<AuthState | null>>];
 
     const changeAuthState = (state: AuthState) => {
         // TODO: Fix by persisted authState implementation
@@ -31,12 +31,17 @@ export function AuthContextProvider(props: any) {
         console.log(state);
     };
 
+    const logout = () => {
+        setAuthState(null);
+    }
+
     const contextData: AuthContextType = {
         userId: authState?._id || "",
         email: authState?.email || "",
         accessToken: authState?.accessToken || "",
         isAuthenticated: !!authState?.email,
         changeAuthState,
+        logout
     };
 
     return (

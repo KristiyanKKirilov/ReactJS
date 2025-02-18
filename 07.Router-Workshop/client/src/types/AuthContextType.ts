@@ -5,5 +5,6 @@ export default interface AuthContextType {
     email: string,
     accessToken: string,
     isAuthenticated: boolean,
-    changeAuthState: (state: AuthState) => void
+    changeAuthState: (state: AuthState) => void,
+    logout: () => void
 }
