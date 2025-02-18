@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
+import withAuth from "../../HOC/withAuth";
+import AuthContextType from "../../types/AuthContextType";
+import { PropsWithChildren } from "react";
+import HeaderProps from "../../types/HeaderProps";
 
-export default function Header() {
-    const context = useAuthContext();
+function Header({
+    auth
+}: HeaderProps) {
+    // const context = useAuthContext();
 
-    if (!context) {
-        throw new Error(
-            "useRegister must be used within an AuthContextProvider"
-        );
-    }
+    // if (!context) {
+    //     throw new Error(
+    //         "useRegister must be used within an AuthContextProvider"
+    //     );
+    // }
 
-    const { isAuthenticated } = context;
+    // const { isAuthenticated } = context;
 
+    const {isAuthenticated} = auth;
     return (
         <header>
             {/* <!-- Navigation --> */}
@@ -37,3 +44,7 @@ export default function Header() {
         </header>
     );
 }
+
+const EnhancedHeader = withAuth(Header);
+
+export default EnhancedHeader; 
