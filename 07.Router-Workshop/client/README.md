@@ -27,21 +27,21 @@
 - [X] Auth Api
   - [X] Login
   - [X] Register
-  - [ ] Logout
+  - [X] Logout
 - [X] Auth Api Hook
   - [X] Login
   - [X] Register
-  - [ ] Logout
+  - [X] Logout
 - [X] Auth state and content 
 - [X] Token management
 - [X] Login
 - [X] Register
-- [ ] Logout
-- [ ] Authorized requests
+- [X] Logout
+- [X ] Authorized requests
   ## 8. UI Implementation
-- [ ] Dynamic Navigation
-- [ ] Create Game
-  - [ ] Api function
-  - [ ] Create custom hook 
+- [X] Dynamic Navigation
+- [X] Create Game
+  - [X] Api function
+  - [X] Create custom hook 
 ## 9. Refactoring
 - [ ] Extract auth state from App component

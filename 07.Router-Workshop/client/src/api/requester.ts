@@ -1,3 +1,5 @@
+import { getAccessToken } from "../utils/authUtils";
+
 async function requester<T>(
     method: "GET" | "POST" | "PUT" | "DELETE",
     url: string,
@@ -7,11 +9,11 @@ async function requester<T>(
         "Content-Type": "application/json",
     };
 
-    // const accessToken = localStorage.getItem("accessToken");
+    const accessToken = getAccessToken(); 
 
-    // if (accessToken) {
-    //     headers["X-Authorization"] =  accessToken;
-    // }
+    if (accessToken) {
+        headers["X-Authorization"] =  accessToken;
+    }
 
     const options: RequestInit = {
         method,
