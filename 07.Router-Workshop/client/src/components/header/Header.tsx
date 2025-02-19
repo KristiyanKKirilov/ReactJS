@@ -45,6 +45,4 @@ function Header({
     );
 }
 
-const EnhancedHeader = withAuth(Header);
-
-export default EnhancedHeader; 
+export default withAuth(Header);; 

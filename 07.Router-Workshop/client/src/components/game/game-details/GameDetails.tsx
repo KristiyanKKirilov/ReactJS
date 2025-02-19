@@ -1,92 +1,56 @@
-import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
-
-import gamesAPI from "../../../api/games-api";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
-
-import Game from "../../../types/Game";
-import Loader from "../../shared/Loader";
-import commentsApi from "../../../api/comments-api";
-import GameComment  from "../../../types/GameComment";
-import CommentItem from "./comment-item/CommentItem";
+import { Link, useParams } from "react-router-dom";
 import { useGetOneGame } from "../../../hooks/useGames";
+import Game from "../../../types/Game";
+import { Dispatch, SetStateAction } from "react";
+import { useForm } from "../../../hooks/useForm";
+import GameComment from "../../../types/GameComment";
+import { useAuthContext } from "../../../contexts/AuthContext";
+import AuthContextType from "../../../types/AuthContextType";
 
-export default function GameDetails() {
-  const [username, setUsername] = useState<string>("");
-  const [text, setText] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
-  const { gameId } = useParams<{ gameId: string }>();
-  const [game, setGame] = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
-    
-  if (!game) {
-    return <Loader />;
-  }
+const initialValues:GameComment = {
+  comment: ''
+};
 
-  async function deleteGame() {
-    try {
-      if (gameId) {
-        await gamesAPI.deleteGame(gameId);
-      }
-    } catch (error) {
-      setError("Failed to delete the game.");
-    }
-  }
+export default function GameDetails() {   
+  const {gameId} = useParams();
+  const [game, setGame]  = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
+  const {userId} = useAuthContext() ?? {userId : ""};
+  const {changeHandler, submitHandler, values } = useForm(initialValues, ({comment}) => {
+     console.log(values);
+     console.log(userId);
+  });
 
-  async function commentSubmitHandler(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (!gameId || !game) return;
-
-    const uniqueId = uuidv4();
-    const newComment: GameComment = {
-      _id: uniqueId,
-      username: username,
-      text: text,
-    };
-
-    commentsApi.create(gameId, newComment);
-    console.log(game.comments);
-    // setComments((prevComments) => [...prevComments, newComment]);
-    setGame(prevState => ({
-        ...prevState,
-        comments:{
-          ...prevState.comments,
-          [newComment._id]: newComment
-        }
-    }))
-    setUsername("");
-    setText("");
-  }
 
   return (
     <section id="game-details">
       <h1>Game Details</h1>
       <div className="info-section">
         <div className="game-header">
-          <img className="game-img" src={game.imageUrl} />
-          <h1>{game.title}</h1>
-          <span className="levels">MaxLevel: {game.maxLevel}</span>
-          <p className="type">{game.category}</p>
+          <img className="game-img" src={game?.imageUrl} />
+          <h1>{game?.title}</h1>
+          <span className="levels">MaxLevel: {game?.maxLevel}</span>
+          <p className="type">{game?.category}</p>
         </div>
 
-        <p className="text">{game.summary}</p>
+        <p className="text">{game?.summary}</p>
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">
-          <Link to={`/games/${game._id}/edit`} className="button">
+          <Link to={`/games/${game?._id}/edit`} className="button">
             Edit
           </Link>
-          <Link to="/games" className="button" onClick={deleteGame}>
+          {/* <Link to="/games" className="button" onClick={deleteGame}>
             Delete
-          </Link>
+          </Link> */}
         </div>
 
-        {game.comments?.length > 0 ? (
+        {game?.comments?.length > 0 ? (
           <div className="details-comments">
             <h2>Comments:</h2>
             <ul>
-              {game?.comments.map((comment: GameComment) => (
+              {/* {game?.comments.map((comment: GameComment) => (
                 <CommentItem key={comment._id} {...comment} />
-              ))}
+              ))} */}
             </ul>
           </div>
         ) : (
@@ -95,19 +59,12 @@ export default function GameDetails() {
 
         <article className="create-comment">
           <label>Add new comment:</label>
-          <form className="form" onSubmit={commentSubmitHandler}>
-            <input
-              type="text"
-              placeholder="Tom"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+          <form className="form" onSubmit={submitHandler }> 
             <textarea
               name="comment"
               placeholder="Comment......"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={values.comment}
+              onChange={changeHandler}
             ></textarea>
             <input className="btn submit" type="submit" value="Add Comment" />
           </form>
