@@ -18,7 +18,6 @@ export default function GameDetails() {
   const { gameId } = useParams<{ gameId: string }>();
   const [game, setGame] = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
     
-
   if (!game) {
     return <Loader />;
   }
@@ -81,11 +80,11 @@ export default function GameDetails() {
           </Link>
         </div>
 
-        {Object.values(game.comments)?.length > 0 ? (
+        {game.comments?.length > 0 ? (
           <div className="details-comments">
             <h2>Comments:</h2>
             <ul>
-              {Object.values(game?.comments).map((comment: GameComment) => (
+              {game?.comments.map((comment: GameComment) => (
                 <CommentItem key={comment._id} {...comment} />
               ))}
             </ul>

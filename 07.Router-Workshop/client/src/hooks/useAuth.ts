@@ -42,8 +42,8 @@ export const useLogout = () => {
     const {logout: localLogout} = useAuthContext() as AuthContextType;
 
     const logoutHandler = () => {
-        logout();
         localLogout();
+        logout();
     }
 
     return logoutHandler;
