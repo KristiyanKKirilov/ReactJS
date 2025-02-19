@@ -6,6 +6,7 @@ import { useForm } from "../../../hooks/useForm";
 import GameComment from "../../../types/GameComment";
 import { useAuthContext } from "../../../contexts/AuthContext";
 import AuthContextType from "../../../types/AuthContextType";
+import useCreateComment from "../../../hooks/useComments";
 
 const initialValues:GameComment = {
   comment: ''
@@ -14,10 +15,10 @@ const initialValues:GameComment = {
 export default function GameDetails() {   
   const {gameId} = useParams();
   const [game, setGame]  = useGetOneGame(gameId!) as [Game, Dispatch<SetStateAction<Game>>];
-  const {userId} = useAuthContext() ?? {userId : ""};
+  const createComment = useCreateComment();
   const {changeHandler, submitHandler, values } = useForm(initialValues, ({comment}) => {
      console.log(values);
-     console.log(userId);
+     createComment(gameId ?? "", comment);
   });
 
 
@@ -59,7 +60,7 @@ export default function GameDetails() {
 
         <article className="create-comment">
           <label>Add new comment:</label>
-          <form className="form" onSubmit={submitHandler }> 
+          <form className="form" onSubmit={submitHandler}> 
             <textarea
               name="comment"
               placeholder="Comment......"
